@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="303e95fc-324d-454d-93c0-6f657f52d3c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/images/pubg-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/pubg_logo_black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TopNavBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +28,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -31,9 +37,13 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\images" />
+      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\images" />
+      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\styles" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\components" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\tests" />
@@ -107,8 +117,16 @@
       <workItem from="1583566957116" duration="2717000" />
       <workItem from="1583569714748" duration="80000" />
       <workItem from="1583569808784" duration="90000" />
-      <workItem from="1583569914943" duration="262000" />
+      <workItem from="1583569914943" duration="2080000" />
     </task>
+    <task id="LOCAL-00001" summary="-init">
+      <created>1583570470657</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583570470657</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,5 +142,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="-init" />
+    <option name="LAST_COMMIT_MESSAGE" value="-init" />
   </component>
 </project>
