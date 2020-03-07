@@ -10,6 +10,7 @@
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
     "d3": "^5.15.0",
+    "d3-queue": "3.0.7",
     "antd": "^4.0.1"
   },
   "scripts": {
