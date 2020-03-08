@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="303e95fc-324d-454d-93c0-6f657f52d3c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MapWrapper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/MapWrapper.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/data/agg.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/data/agg.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/data/kill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/data/kill.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MapWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MapWrapper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +132,7 @@
       <workItem from="1583569808784" duration="90000" />
       <workItem from="1583569914943" duration="15406000" />
       <workItem from="1583629914239" duration="620000" />
-      <workItem from="1583630696015" duration="16972000" />
+      <workItem from="1583630696015" duration="20030000" />
     </task>
     <task id="LOCAL-00001" summary="-init">
       <created>1583570470657</created>
@@ -161,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583576448326</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="-map vis half way">
+      <created>1583667773064</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583667773064</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +185,7 @@
     <MESSAGE value="-init" />
     <MESSAGE value="-add nav bar" />
     <MESSAGE value="-init reading sequence" />
-    <option name="LAST_COMMIT_MESSAGE" value="-init reading sequence" />
+    <MESSAGE value="-map vis half way" />
+    <option name="LAST_COMMIT_MESSAGE" value="-map vis half way" />
   </component>
 </project>

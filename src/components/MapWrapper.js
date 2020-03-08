@@ -48,7 +48,7 @@ export class MapWrapper extends React.Component {
                         Opacity: &nbsp;
                         <Slider step={10} defaultValue={20} onChange={this.opacity_onChange}/>
                     </Col>
-                    <Col span={5}>
+                    <Col span={8}>
                         Killer position: &nbsp;
                         <Switch defaultChecked checkedChildren="red" onChange={this.killer_onChange} />
                     </Col>
