@@ -1,6 +1,7 @@
 @import "App.css";
 @import "Main.css";
-
+@import "~antd/dist/antd.css";
+@import "MapWrapper.css";
 
 body {
   margin: 0;

@@ -1,0 +1,13 @@
+.vis {
+    display: flex;
+    height: 950px;
+    border: 3px solid #ccc;
+    box-shadow: 5px 10px 10px #888;
+    border-radius: 10px;
+    margin: 10px 10px 10px;
+    overflow: hidden;
+}
+
+.main {
+    margin-top: 30px;
+}
