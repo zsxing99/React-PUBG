@@ -27,7 +27,7 @@ export class MapWrapper extends React.Component {
 
     opacity_onChange = (value) => {
         this.setState({
-            opacity: value
+            opacity: value / 100
         })
     };
 

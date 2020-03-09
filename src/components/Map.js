@@ -67,7 +67,7 @@ export class Map extends React.Component {
                 prevProps.options.opacity !== this.props.options.opacity) {
                 const killers = d3.selectAll(".ERANGEL-killers");
                 if (this.props.options.enable_killer) {
-                    killers.attr("opacity", this.props.options.opacity / 100);
+                    killers.attr("opacity", this.props.options.opacity);
                 } else {
                     killers.attr("opacity", "0");
                 }
@@ -77,7 +77,7 @@ export class Map extends React.Component {
                 prevProps.options.opacity !== this.props.options.opacity) {
                 const victims = d3.selectAll(".ERANGEL-victims");
                 if (this.props.options.enable_victim) {
-                    victims.attr("opacity", this.props.options.opacity / 100);
+                    victims.attr("opacity", this.props.options.opacity);
                 } else {
                     victims.attr("opacity", "0");
                 }
