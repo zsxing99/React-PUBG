@@ -13,6 +13,10 @@ export class MapWrapper extends React.Component {
         super(props);
     }
 
+    opacity_tooltip = (value) => {
+        return `${value}%`;
+    };
+
     killer_onChange = (checked) => {
         this.setState({
             enable_killer: checked
@@ -45,8 +49,13 @@ export class MapWrapper extends React.Component {
             <div className="map-filter">
                 <Row>
                     <Col span={5}>
-                        Opacity: &nbsp;
-                        <Slider step={10} defaultValue={20} onChange={this.opacity_onChange}/>
+                        Aggregate level: &nbsp;
+                        <Slider
+                            step={10}
+                            defaultValue={20}
+                            tipFormatter={this.opacity_tooltip}
+                            onChange={this.opacity_onChange}
+                        />
                     </Col>
                     <Col span={8}>
                         Killer position: &nbsp;

@@ -22,7 +22,10 @@ export class Map extends React.Component {
             const map = d3.select("#map-vis")
                 .append("svg")
                 .attr('width', 600)
-                .attr('height', 600);
+                .attr('height', 600)
+                .call(d3.zoom().scaleExtent([1, 8]).on("zoom", function () {
+                    map.attr("transform", d3.event.transform)
+                }));
 
             map.append("image")
                 .attr("xlink:href", map1)

@@ -8,6 +8,11 @@
     overflow: hidden;
 }
 
+.toolbox {
+    width: 400px;
+    margin-top: 10px;
+}
+
 .main {
     margin-top: 20px;
 }
