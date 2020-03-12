@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="303e95fc-324d-454d-93c0-6f657f52d3c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/data/kill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/data/kill.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/data/agg.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/data/agg.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +43,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/data" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -68,6 +64,18 @@
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\images" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\components" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -116,18 +124,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\DELL\AppData\Roaming\Subversion</configuration>
   </component>
@@ -150,6 +146,8 @@
       <workItem from="1583909338564" duration="1081000" />
       <workItem from="1583967807852" duration="1637000" />
       <workItem from="1583970976855" duration="613000" />
+      <workItem from="1583971602684" duration="2896000" />
+      <workItem from="1583976627783" duration="943000" />
     </task>
     <task id="LOCAL-00001" summary="-init">
       <created>1583570470657</created>
@@ -200,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583904374261</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="-map add button">
+      <created>1583971820771</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1583971820771</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +232,8 @@
     <MESSAGE value="-map vis finalized&#10;-map vis max improved efficiency" />
     <MESSAGE value="-map vis minor fix" />
     <MESSAGE value="-map vis add zoom/time selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="-map vis add zoom/time selection" />
+    <MESSAGE value="-map add button" />
+    <option name="LAST_COMMIT_MESSAGE" value="-map add button" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1402" height="278" key="GridCell.Tab.0.bottom" timestamp="1583907015965">
