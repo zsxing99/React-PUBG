@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="303e95fc-324d-454d-93c0-6f657f52d3c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MapWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MapWrapper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TopNavBar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +55,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="ts.external.directory.path" value="D:\software\WebStorm 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -122,8 +125,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.deploy" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583981886919</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="-map with tool box&#10;-animation enabled">
+      <created>1583996152427</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1583996152427</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +262,8 @@
     <MESSAGE value="-map add button" />
     <MESSAGE value="-update data" />
     <MESSAGE value="-enable time interval on map" />
-    <option name="LAST_COMMIT_MESSAGE" value="-enable time interval on map" />
+    <MESSAGE value="-map with tool box&#10;-animation enabled" />
+    <option name="LAST_COMMIT_MESSAGE" value="-map with tool box&#10;-animation enabled" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1402" height="278" key="GridCell.Tab.0.bottom" timestamp="1583907015965">

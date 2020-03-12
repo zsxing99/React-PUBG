@@ -8,6 +8,11 @@
   padding-left: 20px;
 }
 
+.App-menu {
+  margin-left: auto;
+  padding-right: 20px;
+}
+
 .App-header {
   background-color: rgba(0, 0, 0, 0.86);
   height: 55px;

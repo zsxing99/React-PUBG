@@ -3,8 +3,6 @@ import * as d3 from 'd3';
 import agg from '../assets/data/agg.csv'
 import kill from  '../assets/data/kill.csv'
 import {MapWrapper} from "./MapWrapper";
-import {Form, InputNumber, Button, Slider, Row, Col} from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -13,9 +11,6 @@ export class Main extends React.Component {
     }
 
     state = {
-        timer_current: 1,
-        time_interval: [1, 40],
-        inAnimation: false,
         agg: undefined,
         kill: undefined,
         filtered_kill: undefined
@@ -37,10 +32,6 @@ export class Main extends React.Component {
     componentWillMount() {
         this.readData();
     }
-
-    timeInterval_tooltip = (value) => {
-        return `${value} min`;
-    };
 
     binarySearchFirst = (data, target) => {
         let l = 0, r = data.length;
@@ -73,112 +64,15 @@ export class Main extends React.Component {
                 this.binarySearchLast(data, value[1])]
     };
 
-    onChangeTimeInterval = (value) => {
-        this.setState({
-            timer_current: value[0],
-            time_interval: value
-        });
-
-        // const interval = this.find_interval(this.state.kill, [value[0] * 60, value[1] * 60]);
-        // this.setState({
-        //     filtered_kill: kill.slice(interval)
-        // })
-    };
-
-    onClickAnimate = () => {
-        this.setState({
-            inAnimation: true
-        });
-        const second_per_min = 1000;
-        let curr = this.state.time_interval[0];
-        let start = curr;
-        let end = this.state.time_interval[1];
-        let timer = setInterval(() => {
-            if (curr <= end) {
-                this.setState({
-                    timer_current: curr,
-                    time_interval: [start, curr]
-                });
-                curr++;
-            } else {
-                clearInterval(timer);
-                this.setState({
-                    inAnimation: false
-                })
-            }
-        }, second_per_min);
-    };
-
     render() {
         return this.state.agg === undefined ? (
             <div>LOADING</div>
         ) : (
             <div className="main">
                 <div className="vis">
-                    <MapWrapper kill={this.state.kill} interval={this.state.time_interval}/>
-                    <div className="toolbox">
-                        <Row>
-                            <Col span={20}>
-                            Time Interval: &nbsp;
-                            <Slider
-                                range
-                                defaultValue={this.state.time_interval}
-                                onAfterChange={this.onChangeTimeInterval}
-                                tipFormatter={this.timeInterval_tooltip}
-                                disabled={this.state.inAnimation}
-                                max={40}
-                                min={1}
-                                marks={{
-                                    1: "Start",
-                                    40: "End"
-                                }}
-                                />
-                            </Col>
-                            <Col span={12}>
-                                <Form layout="vertical">
-                                    <Form.Item label="1st Coordinate">
-                                        <InputCoordinate/>
-                                    </Form.Item>
-                                    <Form.Item label="2nd Coordinate">
-                                        <InputCoordinate/>
-                                    </Form.Item>
-                                    <Form.Item label="3rd Coordinate">
-                                        <InputCoordinate/>
-                                    </Form.Item>
-                                    <Form.Item label="4th Coordinate">
-                                        <InputCoordinate/>
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <Button type="primary">
-                                            Select Range
-                                        </Button>
-                                    </Form.Item>
-                                </Form>
-                            </Col>
-                            <Col>
-                                <Button
-                                    type="primary"
-                                    icon={<CaretRightOutlined />}
-                                    loading={this.state.inAnimation}
-                                    onClick ={this.onClickAnimate}
-                                >
-                                    {(!this.state.inAnimation) ? "Animate" : "Animating " + this.state.timer_current + " min"}
-                                </Button>
-                            </Col>
-                        </Row>
-                    </div>
+                    <MapWrapper kill={this.state.kill} interval={this.props.selectors.time_interval}/>
                 </div>
             </div>
-        );
-    }
-}
-
-class InputCoordinate extends React.Component {
-    render() {
-        return (
-            <InputNumber
-                style={{ width: '100%' }} min={0} max={800000.0} precision={1} placeholder={"0 - 800000.0"}
-            />
         );
     }
 }
