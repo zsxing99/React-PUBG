@@ -82,17 +82,34 @@ export class Map extends React.Component {
 
             if (prevProps.interval !== this.props.interval) {
                 const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
-                const outRange = d3.selectAll("circle")
-                    .filter(function (d) {
-                        return d.time > interval[1] || d.time < interval[0];
-                    })
-                    .style("visibility", "hidden");
 
-                const inRange = d3.selectAll("circle")
-                    .filter(function (d) {
-                        return d.time <= interval[1] && d.time > interval[0];
-                    })
-                    .style("visibility", "visible");
+                if (this.props.options.enable_victim) {
+                    d3.selectAll(".ERANGEL-victims")
+                        .filter(function (d) {
+                            return d.time <= interval[1] && d.time > interval[0];
+                        })
+                        .attr("opacity", this.props.options.opacity);
+
+                    d3.selectAll(".ERANGEL-victims")
+                        .filter(function (d) {
+                            return d.time > interval[1] || d.time <= interval[0];
+                        })
+                        .attr("opacity", 0);
+                }
+
+                if (this.props.options.enable_killer) {
+                    d3.selectAll(".ERANGEL-killers")
+                        .filter(function (d) {
+                            return d.time <= interval[1] && d.time > interval[0];
+                        })
+                        .attr("opacity", this.props.options.opacity);
+
+                    d3.selectAll(".ERANGEL-killers")
+                        .filter(function (d) {
+                            return d.time > interval[1] || d.time <= interval[0];
+                        })
+                        .attr("opacity", 0);
+                }
             }
         }
     }

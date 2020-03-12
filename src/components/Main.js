@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import agg from '../assets/data/agg.csv'
 import kill from  '../assets/data/kill.csv'
 import {MapWrapper} from "./MapWrapper";
-import {Button, Slider, Row, Col} from 'antd';
+import {Form, InputNumber, Button, Slider, Row, Col} from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 export class Main extends React.Component {
@@ -13,6 +13,7 @@ export class Main extends React.Component {
     }
 
     state = {
+        timer_current: 1,
         time_interval: [1, 40],
         inAnimation: false,
         agg: undefined,
@@ -74,6 +75,7 @@ export class Main extends React.Component {
 
     onChangeTimeInterval = (value) => {
         this.setState({
+            timer_current: value[0],
             time_interval: value
         });
 
@@ -87,15 +89,24 @@ export class Main extends React.Component {
         this.setState({
             inAnimation: true
         });
-        const second_per_min = 2000;
-        const t = (this.state.time_interval[1] - this.state.time_interval[0]);
-        setTimeout(this.animationTimer, t * second_per_min);
-    };
-
-    animationTimer = () => {
-        this.setState({
-            inAnimation: false
-        });
+        const second_per_min = 1000;
+        let curr = this.state.time_interval[0];
+        let start = curr;
+        let end = this.state.time_interval[1];
+        let timer = setInterval(() => {
+            if (curr <= end) {
+                this.setState({
+                    timer_current: curr,
+                    time_interval: [start, curr]
+                });
+                curr++;
+            } else {
+                clearInterval(timer);
+                this.setState({
+                    inAnimation: false
+                })
+            }
+        }, second_per_min);
     };
 
     render() {
@@ -112,7 +123,7 @@ export class Main extends React.Component {
                             <Slider
                                 range
                                 defaultValue={this.state.time_interval}
-                                onChange={this.onChangeTimeInterval}
+                                onAfterChange={this.onChangeTimeInterval}
                                 tipFormatter={this.timeInterval_tooltip}
                                 disabled={this.state.inAnimation}
                                 max={40}
@@ -123,6 +134,27 @@ export class Main extends React.Component {
                                 }}
                                 />
                             </Col>
+                            <Col span={12}>
+                                <Form layout="vertical">
+                                    <Form.Item label="1st Coordinate">
+                                        <InputCoordinate/>
+                                    </Form.Item>
+                                    <Form.Item label="2nd Coordinate">
+                                        <InputCoordinate/>
+                                    </Form.Item>
+                                    <Form.Item label="3rd Coordinate">
+                                        <InputCoordinate/>
+                                    </Form.Item>
+                                    <Form.Item label="4th Coordinate">
+                                        <InputCoordinate/>
+                                    </Form.Item>
+                                    <Form.Item>
+                                        <Button type="primary">
+                                            Select Range
+                                        </Button>
+                                    </Form.Item>
+                                </Form>
+                            </Col>
                             <Col>
                                 <Button
                                     type="primary"
@@ -130,7 +162,7 @@ export class Main extends React.Component {
                                     loading={this.state.inAnimation}
                                     onClick ={this.onClickAnimate}
                                 >
-                                    {(!this.state.inAnimation) ? "Animate" : "Animating"}
+                                    {(!this.state.inAnimation) ? "Animate" : "Animating " + this.state.timer_current + " min"}
                                 </Button>
                             </Col>
                         </Row>
@@ -141,3 +173,12 @@ export class Main extends React.Component {
     }
 }
 
+class InputCoordinate extends React.Component {
+    render() {
+        return (
+            <InputNumber
+                style={{ width: '100%' }} min={0} max={800000.0} precision={1} placeholder={"0 - 800000.0"}
+            />
+        );
+    }
+}

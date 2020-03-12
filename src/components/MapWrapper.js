@@ -55,7 +55,7 @@ export class MapWrapper extends React.Component {
                             step={10}
                             defaultValue={20}
                             tipFormatter={this.opacity_tooltip}
-                            onChange={this.opacity_onChange}
+                            onAfterChange={this.opacity_onChange}
                         />
                     </Col>
                     <Col span={8}>
