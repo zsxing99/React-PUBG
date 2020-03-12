@@ -16,7 +16,8 @@ export class Main extends React.Component {
         time_interval: [1, 40],
         inAnimation: false,
         agg: undefined,
-        kill: undefined
+        kill: undefined,
+        filtered_kill: undefined
     };
 
     readData() {
@@ -27,6 +28,7 @@ export class Main extends React.Component {
         });
         d3.csv(kill).then((data) => {
             this.setState({
+                filtered_kill: data,
                 kill: data
             })
         });
@@ -39,12 +41,46 @@ export class Main extends React.Component {
         return `${value} min`;
     };
 
+    binarySearchFirst = (data, target) => {
+        let l = 0, r = data.length;
+        while (l < r - 1) {
+            const mid = Math.floor((l + r) / 2);
+            if ((data[mid]).time < target) {
+                l = mid;
+            } else {
+                r = mid;
+            }
+        }
+        return data[l] >= target ? l : r;
+    };
+
+    binarySearchLast = (data, target) => {
+        let l = 0, r = data.length;
+        while (l < r - 1) {
+            const mid = Math.floor((l + r) / 2);
+            if ((data[mid]).time < target) {
+                l = mid;
+            } else {
+                r = mid;
+            }
+        }
+        return data[r] <= target ? r : l;
+    };
+
+    find_interval = (data, value) => {
+        return [this.binarySearchFirst(data, value[0]),
+                this.binarySearchLast(data, value[1])]
+    };
+
     onChangeTimeInterval = (value) => {
         this.setState({
             time_interval: value
-        })
+        });
 
-        // perform filtering
+        // const interval = this.find_interval(this.state.kill, [value[0] * 60, value[1] * 60]);
+        // this.setState({
+        //     filtered_kill: kill.slice(interval)
+        // })
     };
 
     onClickAnimate = () => {
@@ -68,7 +104,7 @@ export class Main extends React.Component {
         ) : (
             <div className="main">
                 <div className="vis">
-                    <MapWrapper kill={this.state.kill}/>
+                    <MapWrapper kill={this.state.kill} interval={this.state.time_interval}/>
                     <div className="toolbox">
                         <Row>
                             <Col span={20}>

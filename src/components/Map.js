@@ -39,9 +39,6 @@ export class Map extends React.Component {
                 .enter();
 
             pairs
-                .filter(function (d) {
-                    return d["map"] === "ERANGEL"
-                })
                 .append("circle")
                 .attr("class", "ERANGEL-killers")
                 .attr("cx", (d) => (this.state.x(d["killer_position_x"]) * 800 / 812.45))
@@ -51,9 +48,6 @@ export class Map extends React.Component {
                 .attr('r', 1);
 
             pairs
-                .filter(function (d) {
-                    return d["map"] === "ERANGEL"
-                })
                 .append("circle")
                 .attr("class", "ERANGEL-victims")
                 .attr("cx", (d) => (this.state.x(d["victim_position_x"]) * 800 / 812.45))
@@ -86,6 +80,20 @@ export class Map extends React.Component {
                 }
             }
 
+            if (prevProps.interval !== this.props.interval) {
+                const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
+                const outRange = d3.selectAll("circle")
+                    .filter(function (d) {
+                        return d.time > interval[1] || d.time < interval[0];
+                    })
+                    .style("visibility", "hidden");
+
+                const inRange = d3.selectAll("circle")
+                    .filter(function (d) {
+                        return d.time <= interval[1] && d.time > interval[0];
+                    })
+                    .style("visibility", "visible");
+            }
         }
     }
 

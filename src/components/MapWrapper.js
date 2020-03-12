@@ -44,6 +44,7 @@ export class MapWrapper extends React.Component {
                         data={this.props.kill}
                         options={{enable_killer: this.state.enable_killer, enable_victim: this.state.enable_victim,
                             opacity: this.state.opacity}}
+                        interval={this.props.interval}
                     />
                 </div>
             <div className="map-filter">

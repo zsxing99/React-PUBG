@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="303e95fc-324d-454d-93c0-6f657f52d3c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/data/agg.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/data/agg.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/data/kill.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/data/kill.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MapWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MapWrapper.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,15 +56,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\data" />
+      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\images" />
+      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\components" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\data" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\images" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\styles" />
-      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\components" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\assets\images" />
       <recent name="D:\academic\Zesheng Xing\UC Davis\junior\2020 Winter\ECS 163\pubg\src\components" />
     </key>
   </component>
@@ -205,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583971820771</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="-update data">
+      <created>1583977691158</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1583977691158</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +244,8 @@
     <MESSAGE value="-map vis minor fix" />
     <MESSAGE value="-map vis add zoom/time selection" />
     <MESSAGE value="-map add button" />
-    <option name="LAST_COMMIT_MESSAGE" value="-map add button" />
+    <MESSAGE value="-update data" />
+    <option name="LAST_COMMIT_MESSAGE" value="-update data" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1402" height="278" key="GridCell.Tab.0.bottom" timestamp="1583907015965">
