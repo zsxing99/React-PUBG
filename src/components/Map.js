@@ -45,7 +45,7 @@ export class Map extends React.Component {
                 .append("circle")
                 .attr("class", "ERANGEL-killers")
                 .attr("cx", (d) => (this.state.x(d["killer_position_x"]) * 800 / 812.45))
-                .attr("cy", (d) => (this.state.y(d["killer_position_y"]) * 800 / 810))
+                .attr("cy", (d) => (this.state.y(d["killer_position_y"]) * 800 / 812))
                 .attr("fill", "#ff0000")
                 .attr("opacity", "0.2")
                 .attr('r', 1);
@@ -57,7 +57,7 @@ export class Map extends React.Component {
                 .append("circle")
                 .attr("class", "ERANGEL-victims")
                 .attr("cx", (d) => (this.state.x(d["victim_position_x"]) * 800 / 812.45))
-                .attr("cy", (d) => (this.state.y(d["victim_position_y"]) * 800 / 810))
+                .attr("cy", (d) => (this.state.y(d["victim_position_y"]) * 800 / 812))
                 .attr("fill", "#008bff")
                 .attr("opacity", "0.2")
                 .attr('r', 1);

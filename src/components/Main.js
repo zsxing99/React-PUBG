@@ -3,7 +3,8 @@ import * as d3 from 'd3';
 import agg from '../assets/data/agg.csv'
 import kill from  '../assets/data/kill.csv'
 import {MapWrapper} from "./MapWrapper";
-import {Slider, Row, Col} from 'antd';
+import {Button, Slider, Row, Col} from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export class Main extends React.Component {
 
     state = {
         time_interval: [1, 40],
+        inAnimation: false,
         agg: undefined,
         kill: undefined
     };
@@ -45,6 +47,21 @@ export class Main extends React.Component {
         // perform filtering
     };
 
+    onClickAnimate = () => {
+        this.setState({
+            inAnimation: true
+        });
+        const second_per_min = 2000;
+        const t = (this.state.time_interval[1] - this.state.time_interval[0]);
+        setTimeout(this.animationTimer, t * second_per_min);
+    };
+
+    animationTimer = () => {
+        this.setState({
+            inAnimation: false
+        });
+    };
+
     render() {
         return this.state.agg === undefined ? (
             <div>LOADING</div>
@@ -61,9 +78,24 @@ export class Main extends React.Component {
                                 defaultValue={this.state.time_interval}
                                 onChange={this.onChangeTimeInterval}
                                 tipFormatter={this.timeInterval_tooltip}
+                                disabled={this.state.inAnimation}
                                 max={40}
                                 min={1}
+                                marks={{
+                                    1: "Start",
+                                    40: "End"
+                                }}
                                 />
+                            </Col>
+                            <Col>
+                                <Button
+                                    type="primary"
+                                    icon={<CaretRightOutlined />}
+                                    loading={this.state.inAnimation}
+                                    onClick ={this.onClickAnimate}
+                                >
+                                    {(!this.state.inAnimation) ? "Animate" : "Animating"}
+                                </Button>
                             </Col>
                         </Row>
                     </div>
