@@ -7,9 +7,17 @@ import { CaretRightOutlined } from '@ant-design/icons';
 
 class App extends React.Component {
     state = {
+        spatial: [[0, 0], [800000.0, 800000.0]],
+        spatial_TL: [0, 0],
+        spatial_BR: [0, 0],
+        valid_spatial: false,
+
+
         timer_current: 1,
         time_interval: [1, 40],
         inAnimation: false,
+
+
         visible_toolbox: false
     };
 
@@ -69,7 +77,77 @@ class App extends React.Component {
         return `${value} min`;
     };
 
+    onChangeTL_x = (value) => {
+        const spatial_TL = this.state.spatial_TL;
+        const spatial_BR = this.state.spatial_BR;
+        if (value < spatial_BR[0] && spatial_TL[1] < spatial_BR[1]) {
+            this.setState({
+                spatial_TL: [value, spatial_TL[1]],
+                valid_spatial: true
+            })
+        } else {
+            this.setState({
+                spatial_TL: [value, spatial_TL[1]],
+                valid_spatial: false
+            })
+        }
+    };
+
+    onChangeTL_y = (value) => {
+        const spatial_TL = this.state.spatial_TL;
+        const spatial_BR = this.state.spatial_BR;
+        if (spatial_TL[0] < spatial_BR[0] && value < spatial_BR[1]) {
+            this.setState({
+                spatial_TL: [spatial_TL[0], value],
+                valid_spatial: true
+            })
+        } else {
+            this.setState({
+                spatial_TL: [spatial_TL[0], value],
+                valid_spatial: false
+            })
+        }
+    };
+
+    onChangeBR_x = (value) => {
+        const spatial_TL = this.state.spatial_TL;
+        const spatial_BR = this.state.spatial_BR;
+        if (spatial_TL[0] < value && spatial_TL[1] < spatial_BR[1]) {
+            this.setState({
+                spatial_BR: [value, spatial_BR[1]],
+                valid_spatial: true
+            })
+        } else {
+            this.setState({
+                spatial_BR: [value, spatial_BR[1]],
+                valid_spatial: false
+            })
+        }
+    };
+
+    onChangeBR_y = (value) => {
+        const spatial_TL = this.state.spatial_TL;
+        const spatial_BR = this.state.spatial_BR;
+        if (spatial_TL[0] < spatial_BR[0] && spatial_TL[1] < value) {
+            this.setState({
+                spatial_BR: [spatial_BR[0], value],
+                valid_spatial: true
+            })
+        } else {
+            this.setState({
+                spatial_BR: [spatial_BR[0], value],
+                valid_spatial: false
+            })
+        }
+    };
+
     render() {
+        const onChangeSpatial = () => {
+            this.setState({
+                spatial: [this.state.spatial_TL, this.state.spatial_BR]
+            });
+        };
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -116,22 +194,27 @@ class App extends React.Component {
                                     </Col>
                                 </Row>
                                 <Row span={8}>
-                                    <Form layout="vertical">
+                                    <Form layout="vertical"
+                                    >
                                         Area: &nbsp;
-                                        <Form.Item label="1st Coordinate">
-                                            <InputCoordinate/>
+                                        <Form.Item label="1st x Coordinate" rules={[{ required: true , message: "Top Left Coordinate required"}]}
+                                                    name="x1">
+                                            <InputNumber onChange={this.onChangeTL_x} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
                                         </Form.Item>
-                                        <Form.Item label="2nd Coordinate">
-                                            <InputCoordinate/>
+                                        <Form.Item label="1st y Coordinate" rules={[{ required: true , message: "Top Left Coordinate required"}]}
+                                                   name="y1">
+                                            <InputNumber onChange={this.onChangeTL_y} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
                                         </Form.Item>
-                                        <Form.Item label="3rd Coordinate">
-                                            <InputCoordinate/>
+                                        <Form.Item label="2nd x Coordinate" rules={[{ required: true , message: "Bottom Right Coordinate required"}]}
+                                                    name="x2">
+                                            <InputNumber onChange={this.onChangeBR_x} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
                                         </Form.Item>
-                                        <Form.Item label="4th Coordinate">
-                                            <InputCoordinate/>
+                                        <Form.Item label="2nd y Coordinate" rules={[{ required: true , message: "Bottom Right Coordinate required"}]}
+                                                   name="y2">
+                                            <InputNumber onChange={this.onChangeBR_y} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
                                         </Form.Item>
                                         <Form.Item>
-                                            <Button type="primary">
+                                            <Button type="primary" onClick={onChangeSpatial} disabled={!this.state.valid_spatial}>
                                                 Select Range
                                             </Button>
                                         </Form.Item>
@@ -153,18 +236,8 @@ class App extends React.Component {
                         </Drawer>
                     </div>
                 </header>
-                <Main selectors={{time_interval: this.state.time_interval}}/>
+                <Main selectors={{time_interval: this.state.time_interval, spatial_selection: this.state.spatial}}/>
             </div>
-        );
-    }
-}
-
-class InputCoordinate extends React.Component {
-    render() {
-        return (
-            <InputNumber
-                style={{ width: '100%' }} min={0} max={800000.0} precision={1} placeholder={"0 - 800000.0"}
-            />
         );
     }
 }

@@ -70,7 +70,9 @@ export class Main extends React.Component {
         ) : (
             <div className="main">
                 <div className="vis">
-                    <MapWrapper kill={this.state.kill} interval={this.props.selectors.time_interval}/>
+                    <MapWrapper kill={this.state.kill} interval={this.props.selectors.time_interval}
+                                spatial_selection={this.props.selectors.spatial_selection}
+                    />
                 </div>
             </div>
         );

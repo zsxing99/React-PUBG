@@ -10,12 +10,23 @@ export class Map extends React.Component {
         y : d3.scaleLinear()
             .range([600, 0])
             .domain([800000, 0]),
-        init: true
+        init: true,
+
+        lines: undefined
     };
 
     constructor(props) {
         super(props);
     }
+
+    makeLines = (points) => {
+        return [
+            [points[0][0], points[0][1], points[0][0], points[1][1]],
+            [points[0][0], points[0][1], points[1][0], points[0][1]],
+            [points[1][0], points[1][1], points[0][0], points[1][1]],
+            [points[1][0], points[1][1], points[1][0], points[0][1]]
+        ]
+    };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.init) {
@@ -31,6 +42,26 @@ export class Map extends React.Component {
                 .attr("xlink:href", map1)
                 .attr('width', 600)
                 .attr('height', 600);
+
+            const coordinates = this.makeLines(this.props.space);
+
+            const lines = map.append("g").selectAll(".line")
+                .data(coordinates)
+                .enter();
+
+            lines.append("line")
+                .attr("class", "ex")
+                .style("stroke", "yellow")
+                .attr("class", "geo-space")
+                .attr("x1", (d)=>(this.state.x(d[0])))
+                .attr("y1", (d)=>(this.state.y(d[1])))
+                .attr("x2", (d)=>(this.state.x(d[2])))
+                .attr("y2", (d)=>(this.state.y(d[3])));
+
+            this.setState({
+                lines: lines
+            });
+
 
             const pairs = map
                 .append("g")
@@ -110,6 +141,21 @@ export class Map extends React.Component {
                         })
                         .attr("opacity", 0);
                 }
+            }
+
+            if (prevProps.space !== this.props.space) {
+                const coordinates = this.makeLines(this.props.space);
+                d3.selectAll(".geo-space").remove();
+                const lines = this.state.lines;
+                lines.data(coordinates)
+                    .append("line")
+                    .attr("class", "ex")
+                    .style("stroke", "yellow")
+                    .attr("class", "geo-space")
+                    .attr("x1", (d)=>(this.state.x(d[0])))
+                    .attr("y1", (d)=>(this.state.y(d[1])))
+                    .attr("x2", (d)=>(this.state.x(d[2])))
+                    .attr("y2", (d)=>(this.state.y(d[3])));
             }
         }
     }

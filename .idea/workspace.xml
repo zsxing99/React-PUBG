@@ -5,10 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TopNavBar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MapWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MapWrapper.js" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,8 +125,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -154,6 +154,7 @@
       <workItem from="1583970976855" duration="613000" />
       <workItem from="1583971602684" duration="2896000" />
       <workItem from="1583976627783" duration="943000" />
+      <workItem from="1584038253886" duration="23379000" />
     </task>
     <task id="LOCAL-00001" summary="-init">
       <created>1583570470657</created>
@@ -232,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583996152427</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="-major update on layout and toolbox">
+      <created>1584001518806</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1584001518806</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +271,8 @@
     <MESSAGE value="-update data" />
     <MESSAGE value="-enable time interval on map" />
     <MESSAGE value="-map with tool box&#10;-animation enabled" />
-    <option name="LAST_COMMIT_MESSAGE" value="-map with tool box&#10;-animation enabled" />
+    <MESSAGE value="-major update on layout and toolbox" />
+    <option name="LAST_COMMIT_MESSAGE" value="-major update on layout and toolbox" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1402" height="278" key="GridCell.Tab.0.bottom" timestamp="1583907015965">
