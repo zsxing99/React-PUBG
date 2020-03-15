@@ -2,7 +2,7 @@ import React from 'react';
 import * as d3 from 'd3';
 import agg from '../assets/data/agg.csv'
 import kill from '../assets/data/kill.csv'
-import agg200 from '../assets/data/agg-200.csv'
+import agg800 from '../assets/data/agg-800.csv'
 import { MapWrapper } from "./MapWrapper";
 import ScatterplotMatrix from "./ScatterplotMatrix";
 import { Button, Slider, Row, Col } from 'antd';
@@ -19,7 +19,7 @@ export class Main extends React.Component {
         inAnimation: false,
         agg: undefined,
         kill: undefined,
-        agg200: undefined,
+        agg800: undefined,
         filtered_kill: undefined
     };
 
@@ -29,9 +29,9 @@ export class Main extends React.Component {
                 agg: data
             })
         });
-        d3.csv(agg200).then((data) => {
+        d3.csv(agg800).then((data) => {
             this.setState({
-                agg200: data
+                agg800: data
             })
         })
         d3.csv(kill).then((data) => {
@@ -114,7 +114,7 @@ export class Main extends React.Component {
 
                     <ScatterplotMatrix
                         plotId="kMeans"
-                        data={this.state.agg200}
+                        data={this.state.agg800}
                         centroids={[{ 0: "player_dist_ride" }, { 1: "player_dist_walk" }, { 2: "player_dmg" }, { 3: "player_kills" }, { 4: "player_survive_time" }]}
                     />
                     {/* <div className="vis">
