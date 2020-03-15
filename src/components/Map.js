@@ -93,9 +93,14 @@ export class Map extends React.Component {
         } else {
             if (prevProps.options.enable_killer !== this.props.options.enable_killer ||
                 prevProps.options.opacity !== this.props.options.opacity) {
+                const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
                 const killers = d3.selectAll(".ERANGEL-killers");
                 if (this.props.options.enable_killer) {
-                    killers.attr("opacity", this.props.options.opacity);
+                    killers
+                        .filter(function (d) {
+                            return d.time <= interval[1] && d.time > interval[0];
+                        })
+                        .attr("opacity", this.props.options.opacity);
                 } else {
                     killers.attr("opacity", "0");
                 }
@@ -103,9 +108,14 @@ export class Map extends React.Component {
 
             if (prevProps.options.enable_victim !== this.props.options.enable_victim ||
                 prevProps.options.opacity !== this.props.options.opacity) {
+                const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
                 const victims = d3.selectAll(".ERANGEL-victims");
                 if (this.props.options.enable_victim) {
-                    victims.attr("opacity", this.props.options.opacity);
+                    victims
+                        .filter(function (d) {
+                            return d.time <= interval[1] && d.time > interval[0];
+                        })
+                        .attr("opacity", this.props.options.opacity);
                 } else {
                     victims.attr("opacity", "0");
                 }
