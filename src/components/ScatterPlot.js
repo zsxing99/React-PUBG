@@ -4,6 +4,7 @@ See the LinearGraph for an example of calling ScatterPlot
 */
 import React from "react";
 import { scaleLinear, max, axisLeft, axisBottom, select } from "d3";
+import * as d3 from 'd3';
 
 function sortNumber(a, b) {
     return a - b
@@ -13,6 +14,47 @@ class ScatterPlot extends React.Component {
     constructor(props) {
         super(props)
     }
+    state = {
+        xMax: -1,
+        yMax: -1,
+        isMaxSet: false
+    };
+
+    findMinMax() {
+        var data = this.props.data;
+        var x = [], y = [];
+        for (var i = 0; i < data.length; i++) {
+            x.push(parseInt(data[i][0]))
+            y.push(parseInt(data[i][1]))
+        }
+        var _xMax = d3.max(x);
+        var _yMax = d3.max(y);
+
+        // Rescale outliers
+        if (_xMax > 10000) {
+            _xMax = 10000;
+        }
+        if (_yMax > 10000) {
+            _yMax = 10000;
+        }
+
+        this.setState({
+            xMax: _xMax
+        })
+        this.setState({
+            yMax: _yMax
+        })
+        this.setState({
+            isMaxSet: true
+        })
+    }
+    componentWillMount() {
+        if (!this.state.isMaxSet) {
+            this.findMinMax();
+        }
+
+    }
+
 
     render() {
         const margin = { top: 20, right: 15, bottom: 60, left: 60 }
@@ -21,22 +63,15 @@ class ScatterPlot extends React.Component {
         const data = this.props.data
 
         const x = scaleLinear()
-            .domain([
-                0,
-                max(data, function (d) {
-                    return d[0]
-                })
-            ])
+            .domain([0, this.state.xMax])
             .range([0, width])
 
         const y = scaleLinear()
-            .domain([
-                0,
-                max(data, function (d) {
-                    return d[1]
-                })
-            ])
+            .domain([0, this.state.yMax])
             .range([height, 0])
+        console.log(`xaxis max: ${this.state.xMax}`)
+        console.log(`yaxis max: ${this.state.yMax}`);
+
 
         return (
             <div>
