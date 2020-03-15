@@ -5,6 +5,7 @@ See the LinearGraph for an example of calling ScatterPlot
 import React from "react";
 import { scaleLinear, max, axisLeft, axisBottom, select } from "d3";
 import * as d3 from 'd3';
+import '../styles/Matrix.css';
 
 function sortNumber(a, b) {
     return a - b
@@ -32,19 +33,15 @@ class ScatterPlot extends React.Component {
 
         // Rescale outliers
         if (_xMax > 10000) {
-            _xMax = 10000;
+            _xMax = 6000;
         }
         if (_yMax > 10000) {
             _yMax = 10000;
         }
 
         this.setState({
-            xMax: _xMax
-        })
-        this.setState({
-            yMax: _yMax
-        })
-        this.setState({
+            xMax: _xMax,
+            yMax: _yMax,
             isMaxSet: true
         })
     }
@@ -64,13 +61,12 @@ class ScatterPlot extends React.Component {
 
         const x = scaleLinear()
             .domain([0, this.state.xMax])
-            .range([0, width])
+            .range([0, width]);
+
 
         const y = scaleLinear()
             .domain([0, this.state.yMax])
             .range([height, 0])
-        console.log(`xaxis max: ${this.state.xMax}`)
-        console.log(`yaxis max: ${this.state.yMax}`);
 
 
         return (
@@ -154,12 +150,12 @@ class Axis extends React.Component {
     componentDidMount() {
         const node = this.refs[this.props.axis]
         select(node).call(this.props.scale)
+        console.log(node)
     }
 
     render() {
         return (
             <g
-                className="main axis date"
                 transform={this.props.transform}
                 ref={this.props.axis}
             />
