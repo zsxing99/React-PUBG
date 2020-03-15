@@ -1,9 +1,11 @@
 import React from 'react';
 import * as d3 from 'd3';
 import agg from '../assets/data/agg.csv'
-import kill from  '../assets/data/kill.csv'
-import {MapWrapper} from "./MapWrapper";
-import {Button, Slider, Row, Col} from 'antd';
+import kill from '../assets/data/kill.csv'
+import agg200 from '../assets/data/agg-200.csv'
+import { MapWrapper } from "./MapWrapper";
+import ScatterplotMatrix from "./ScatterplotMatrix";
+import { Button, Slider, Row, Col } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 export class Main extends React.Component {
@@ -17,6 +19,7 @@ export class Main extends React.Component {
         inAnimation: false,
         agg: undefined,
         kill: undefined,
+        agg200: undefined,
         filtered_kill: undefined
     };
 
@@ -26,6 +29,11 @@ export class Main extends React.Component {
                 agg: data
             })
         });
+        d3.csv(agg200).then((data) => {
+            this.setState({
+                agg200: data
+            })
+        })
         d3.csv(kill).then((data) => {
             this.setState({
                 filtered_kill: data,
@@ -69,7 +77,7 @@ export class Main extends React.Component {
 
     find_interval = (data, value) => {
         return [this.binarySearchFirst(data, value[0]),
-                this.binarySearchLast(data, value[1])]
+        this.binarySearchLast(data, value[1])]
     };
 
     onChangeTimeInterval = (value) => {
@@ -102,42 +110,48 @@ export class Main extends React.Component {
         return this.state.agg === undefined ? (
             <div>LOADING</div>
         ) : (
-            <div className="main">
-                <div className="vis">
-                    <MapWrapper kill={this.state.kill} interval={this.state.time_interval}/>
-                    <div className="toolbox">
-                        <Row>
-                            <Col span={20}>
-                            Time Interval: &nbsp;
+                <div className="main">
+
+                    <ScatterplotMatrix
+                        plotId="kMeans"
+                        data={this.state.agg200}
+                        centroids={[{ 0: "player_dist_ride" }, { 1: "player_dist_walk" }, { 2: "player_dmg" }, { 3: "player_kills" }, { 4: "player_survive_time" }]}
+                    />
+                    {/* <div className="vis">
+                        <MapWrapper kill={this.state.kill} interval={this.state.time_interval} />
+                        <div className="toolbox">
+                            <Row>
+                                <Col span={20}>
+                                    Time Interval: &nbsp;
                             <Slider
-                                range
-                                defaultValue={this.state.time_interval}
-                                onChange={this.onChangeTimeInterval}
-                                tipFormatter={this.timeInterval_tooltip}
-                                disabled={this.state.inAnimation}
-                                max={40}
-                                min={1}
-                                marks={{
-                                    1: "Start",
-                                    40: "End"
-                                }}
-                                />
-                            </Col>
-                            <Col>
-                                <Button
-                                    type="primary"
-                                    icon={<CaretRightOutlined />}
-                                    loading={this.state.inAnimation}
-                                    onClick ={this.onClickAnimate}
-                                >
-                                    {(!this.state.inAnimation) ? "Animate" : "Animating"}
-                                </Button>
-                            </Col>
-                        </Row>
-                    </div>
+                                        range
+                                        defaultValue={this.state.time_interval}
+                                        onChange={this.onChangeTimeInterval}
+                                        tipFormatter={this.timeInterval_tooltip}
+                                        disabled={this.state.inAnimation}
+                                        max={40}
+                                        min={1}
+                                        marks={{
+                                            1: "Start",
+                                            40: "End"
+                                        }}
+                                    />
+                                </Col>
+                                <Col>
+                                    <Button
+                                        type="primary"
+                                        icon={<CaretRightOutlined />}
+                                        loading={this.state.inAnimation}
+                                        onClick={this.onClickAnimate}
+                                    >
+                                        {(!this.state.inAnimation) ? "Animate" : "Animating"}
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </div> */}
+                    {/* </div> */}
                 </div>
-            </div>
-        );
+            );
     }
 }
 
