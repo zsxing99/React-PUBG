@@ -4,10 +4,10 @@ import map1 from '../assets/images/erangel.jpg'
 
 export class Map extends React.Component {
     state = {
-        x : d3.scaleLinear()
+        x: d3.scaleLinear()
             .range([0, 600])
             .domain([0, 800000]),
-        y : d3.scaleLinear()
+        y: d3.scaleLinear()
             .range([600, 0])
             .domain([800000, 0]),
         init: true,
@@ -53,10 +53,10 @@ export class Map extends React.Component {
                 .attr("class", "ex")
                 .style("stroke", "yellow")
                 .attr("class", "geo-space")
-                .attr("x1", (d)=>(this.state.x(d[0])))
-                .attr("y1", (d)=>(this.state.y(d[1])))
-                .attr("x2", (d)=>(this.state.x(d[2])))
-                .attr("y2", (d)=>(this.state.y(d[3])));
+                .attr("x1", (d) => (this.state.x(d[0])))
+                .attr("y1", (d) => (this.state.y(d[1])))
+                .attr("x2", (d) => (this.state.x(d[2])))
+                .attr("y2", (d) => (this.state.y(d[3])));
 
             this.setState({
                 lines: lines
@@ -162,10 +162,10 @@ export class Map extends React.Component {
                     .attr("class", "ex")
                     .style("stroke", "yellow")
                     .attr("class", "geo-space")
-                    .attr("x1", (d)=>(this.state.x(d[0])))
-                    .attr("y1", (d)=>(this.state.y(d[1])))
-                    .attr("x2", (d)=>(this.state.x(d[2])))
-                    .attr("y2", (d)=>(this.state.y(d[3])));
+                    .attr("x1", (d) => (this.state.x(d[0])))
+                    .attr("y1", (d) => (this.state.y(d[1])))
+                    .attr("x2", (d) => (this.state.x(d[2])))
+                    .attr("y2", (d) => (this.state.y(d[3])));
             }
         }
     }

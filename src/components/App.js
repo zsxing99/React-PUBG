@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/App.css';
-import {Main} from "./Main";
+import { Main } from "./Main";
 import logo from "../assets/images/pubg-logo.png";
-import {Button, Col, Drawer, Form, InputNumber, Row, Slider} from "antd";
+import { Button, Col, Drawer, Form, InputNumber, Row, Slider } from "antd";
 import { CaretRightOutlined } from '@ant-design/icons';
 
 class App extends React.Component {
@@ -151,18 +151,18 @@ class App extends React.Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo"/>
+                    <img src={logo} className="App-logo" />
                     <div className="App-menu">
-                        <Button type="primary" style={{height: "55px", background: "black", borderColor: "grey"}}
-                                onClick={this.onClickGitHub}
+                        <Button type="primary" style={{ height: "55px", background: "black", borderColor: "grey" }}
+                            onClick={this.onClickGitHub}
                         >
                             GitHub
                         </Button>
-                        <Button type="primary" style={{height: "55px", background: "black", borderColor: "grey"}}>
+                        <Button type="primary" style={{ height: "55px", background: "black", borderColor: "grey" }}>
                             Description
                         </Button>
-                        <Button type="primary" style={{height: "55px", background: "black", borderColor: "grey"}}
-                                onClick={this.showDrawer_tb}
+                        <Button type="primary" style={{ height: "55px", background: "black", borderColor: "grey" }}
+                            onClick={this.showDrawer_tb}
                         >
                             {this.state.inAnimation ? "Animating " + this.state.timer_current + " min" : "ToolBox"}
                         </Button>
@@ -197,21 +197,21 @@ class App extends React.Component {
                                     <Form layout="vertical"
                                     >
                                         Area: &nbsp;
-                                        <Form.Item label="1st x Coordinate" rules={[{ required: true , message: "Top Left Coordinate required"}]}
-                                                    name="x1">
-                                            <InputNumber onChange={this.onChangeTL_x} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
+                                        <Form.Item label="1st x Coordinate" rules={[{ required: true, message: "Top Left Coordinate required" }]}
+                                            name="x1">
+                                            <InputNumber onChange={this.onChangeTL_x} style={{ width: "100%" }} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1} />
                                         </Form.Item>
-                                        <Form.Item label="1st y Coordinate" rules={[{ required: true , message: "Top Left Coordinate required"}]}
-                                                   name="y1">
-                                            <InputNumber onChange={this.onChangeTL_y} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
+                                        <Form.Item label="1st y Coordinate" rules={[{ required: true, message: "Top Left Coordinate required" }]}
+                                            name="y1">
+                                            <InputNumber onChange={this.onChangeTL_y} style={{ width: "100%" }} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1} />
                                         </Form.Item>
-                                        <Form.Item label="2nd x Coordinate" rules={[{ required: true , message: "Bottom Right Coordinate required"}]}
-                                                    name="x2">
-                                            <InputNumber onChange={this.onChangeBR_x} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
+                                        <Form.Item label="2nd x Coordinate" rules={[{ required: true, message: "Bottom Right Coordinate required" }]}
+                                            name="x2">
+                                            <InputNumber onChange={this.onChangeBR_x} style={{ width: "100%" }} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1} />
                                         </Form.Item>
-                                        <Form.Item label="2nd y Coordinate" rules={[{ required: true , message: "Bottom Right Coordinate required"}]}
-                                                   name="y2">
-                                            <InputNumber onChange={this.onChangeBR_y} style={{width: "100%"}} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1}/>
+                                        <Form.Item label="2nd y Coordinate" rules={[{ required: true, message: "Bottom Right Coordinate required" }]}
+                                            name="y2">
+                                            <InputNumber onChange={this.onChangeBR_y} style={{ width: "100%" }} placeholder={"0 - 800000.0"} min={0} max={800000.0} precision={1} />
                                         </Form.Item>
                                         <Form.Item>
                                             <Button type="primary" onClick={onChangeSpatial} disabled={!this.state.valid_spatial}>
@@ -226,7 +226,7 @@ class App extends React.Component {
                                             type="primary"
                                             icon={<CaretRightOutlined />}
                                             loading={this.state.inAnimation}
-                                            onClick ={this.onClickAnimate}
+                                            onClick={this.onClickAnimate}
                                         >
                                             {(!this.state.inAnimation) ? "Animate" : "Animating " + this.state.timer_current + " min"}
                                         </Button>
@@ -236,7 +236,7 @@ class App extends React.Component {
                         </Drawer>
                     </div>
                 </header>
-                <Main selectors={{time_interval: this.state.time_interval, spatial_selection: this.state.spatial}}/>
+                <Main selectors={{ time_interval: this.state.time_interval, spatial_selection: this.state.spatial }} />
             </div>
         );
     }
