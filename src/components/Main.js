@@ -100,6 +100,13 @@ export class Main extends React.Component {
         this.binarySearchLast(data, value[1])]
     };
 
+    bubbleClick = (label, shouldUpdateMap) => {
+        if (shouldUpdateMap) {
+            console.log(`update map with ${label}.......`)
+        }
+
+    }
+
     render() {
         return this.state.agg === undefined ? (
             <div>LOADING</div>
@@ -122,7 +129,6 @@ export class Main extends React.Component {
                                 height={700}
                                 padding={5} // optional value, number that set the padding between bubbles
                                 bubbleClickFunc={this.bubbleClick}
-                                legendClickFun={this.legendClick}
                                 data={this.state.bubbleChartData}
                             />
                         </div>

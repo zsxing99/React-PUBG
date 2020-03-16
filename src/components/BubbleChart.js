@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
+// for highlighting selections
+var prevClicked = "";
+var clicked = "empty";
+var isSelected = false;
+
+var shouldUpdateMap = false;
 export default class BubbleChart extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +53,7 @@ export default class BubbleChart extends Component {
         this.svg.innerHTML = '';
 
         const bubblesWidth = width;
-        const color = d3.scaleOrdinal(d3.schemeDark2);
+        const color = d3.scaleOrdinal(d3.schemeTableau10);
 
         const pack = d3.pack()
             .size([bubblesWidth * graph.zoom, bubblesWidth * graph.zoom])
@@ -75,7 +81,7 @@ export default class BubbleChart extends Component {
         const {
             graph,
             data,
-            bubbleClickFun,
+            bubbleClickFunc,
             valueFont,
             labelFont,
         } = this.props;
@@ -90,7 +96,8 @@ export default class BubbleChart extends Component {
             .attr("class", "node")
             .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
             .on("click", function (d) {
-                bubbleClickFun(d.label);
+                bubbleClickFunc(d.label, shouldUpdateMap);
+                clicked = d.label;
             });
 
         node.append("circle")
@@ -100,6 +107,34 @@ export default class BubbleChart extends Component {
             .style("z-index", 1)
             .on('mouseover', function (d) {
                 d3.select(this).attr("r", d.r * 1.04);
+            })
+            .on("click", function (d) {
+                clicked = d.label;
+                if (!isSelected) {
+                    d3.select(this).style("opacity", 1)
+
+                    d3.selectAll(".node")
+                        .filter(function (x) {
+                            return x.label != clicked
+                        })
+                        .style("opacity", 0.3);
+                    prevClicked = clicked;
+                    isSelected = true;
+                    shouldUpdateMap = true;
+                } else {
+
+                    d3.selectAll(".node")
+                        .style("opacity", 1);
+                    isSelected = false;
+                    prevClicked = clicked;
+                    shouldUpdateMap = false;
+
+                }
+
+
+
+
+
             })
             .on('mouseout', function (d) {
                 const r = d.r - (d.r * 0.04);
@@ -231,5 +266,5 @@ BubbleChart.defaultProps = {
         color: '#fff',
         weight: 'normal',
     },
-    bubbleClickFun: (label) => { console.log(`Bubble ${label} is clicked ...`) },
+    bubbleClickFunc: null,
 }
