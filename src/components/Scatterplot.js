@@ -48,6 +48,15 @@ class ScatterPlot extends React.Component {
 
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+
+        if (this.props.data !== nextProps.data) {
+            return true;
+        }
+
+    }
+
+
 
     render() {
         const margin = { top: 20, right: 15, bottom: 60, left: 60 }
@@ -146,7 +155,6 @@ class Axis extends React.Component {
     componentDidMount() {
         const node = this.refs[this.props.axis]
         select(node).call(this.props.scale)
-        console.log(node)
     }
 
     render() {

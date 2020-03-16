@@ -21,7 +21,16 @@ export default class BubbleChart extends Component {
         this.drawChart();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+
+        if (this.props.data !== nextProps.data) {
+            return true;
+        }
+
+    }
+
     componentDidUpdate() {
+        console.log("Bubblechart is updated")
         const {
             width,
             height,
@@ -131,11 +140,6 @@ export default class BubbleChart extends Component {
                     shouldUpdateMap = false;
 
                 }
-
-
-
-
-
             })
             .on('mouseout', function (d) {
                 const r = d.r - (d.r * 0.04);

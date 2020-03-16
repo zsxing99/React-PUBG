@@ -85,7 +85,6 @@ const ScatterplotMatrix = props => {
             processData(data)
             setIsLoading(false);
         }
-        console.log("matrix loading")
     });
 
     return (
