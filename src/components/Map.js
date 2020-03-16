@@ -92,11 +92,17 @@ export class Map extends React.Component {
                 init: false
             })
         } else {
-            console.log("========================")
-            console.log("INSIDE MAP.JS")
-            console.log(this.props.shouldHighlight);
-            console.log(this.props.weapon)
-            console.log("========================")
+            if (this.props.shouldHighlight) {
+                // TODO: Add code to highlight dots on map that are killed by selected weapon
+                console.log("DRAW HIGHTLIGHT!!!!!!!!!")
+                console.log(`this.props.shouldHighlight = ${this.props.shouldHighlight}`)
+                console.log(`weapon to hightlight = ${this.props.weapon}`)
+
+                // filter input data to only have rows containing this.props.weapon
+
+                // draw on map based on the filtered data
+
+            }
             if (prevProps.options.enable_killer !== this.props.options.enable_killer ||
                 prevProps.options.opacity !== this.props.options.opacity) {
                 const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
