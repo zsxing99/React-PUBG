@@ -20,6 +20,7 @@ export class Main extends React.Component {
         agg: undefined,
         kill: undefined,
         filtered_kill: undefined,
+        time_interval: undefined,
         bubbleChartData: undefined,
         shouldHighlightMap: false,
         weaponSelected: "NONE",
@@ -36,19 +37,31 @@ export class Main extends React.Component {
                 filtered_kill: data,
                 kill: data
             })
-            this.setBubbleChartData(data, 'killed_by');
+            this.setBubbleChartData(data, 'killed_by', [0, 40]);
         });
     };
 
-    setBubbleChartData(data, groupByKey) {
+    setBubbleChartData(data, groupByKey, time_interval) {
+        console.log("INDISE SETBUBBLECHARTDATA(): " + time_interval)
         var temp = [];
         var buffer = [];
         var result = [];
+        const interval = [time_interval[0] * 60, time_interval[1] * 60];
+        console.log("Interval 0 is " + time_interval[0] * 60)
+        console.log("Interval 1 is " + time_interval[1] * 60)
+        console.log(data[0].time)
         data.forEach(element => {
-            if (element.hasOwnProperty(groupByKey)) {
-                temp.push(element[groupByKey]);
+            if (time_interval) {
+                if (element.hasOwnProperty(groupByKey)
+                    && (element.time >= interval[0] && element.time <= interval[1])
+                ) {
+
+                    temp.push(element[groupByKey]);
+                }
+
             }
         });
+
         temp.forEach(element => {
             if (buffer.includes(element)) {
                 result.forEach(e => {
@@ -65,10 +78,17 @@ export class Main extends React.Component {
                 buffer.push(element);
             }
         });
+
         this.setState({
             bubbleChartData: result
         })
     };
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.selectors.time_interval !== this.props.selectors.time_interval) {
+            this.setBubbleChartData(this.state.kill, 'killed_by', this.props.selectors.time_interval);
+        }
+    }
 
     componentWillMount() {
         this.readData();
@@ -156,6 +176,7 @@ export class Main extends React.Component {
                                 padding={5} // padding between bubbles
                                 bubbleClickFunc={this.bubbleClick}
                                 data={this.state.bubbleChartData}
+                                interval={this.props.selectors.time_interval}
                             />
                         </div>
                         <div>

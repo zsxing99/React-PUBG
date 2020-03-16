@@ -53,7 +53,7 @@ class ScatterPlot extends React.Component {
         if (this.props.data !== nextProps.data) {
             return true;
         }
-
+        return false;
     }
 
 

@@ -26,6 +26,7 @@ export default class BubbleChart extends Component {
         if (this.props.data !== nextProps.data) {
             return true;
         }
+        return false;
 
     }
 
@@ -57,7 +58,9 @@ export default class BubbleChart extends Component {
             height,
             width,
             padding,
+            interval
         } = this.props;
+
         // Reset the svg element to a empty state.
         this.svg.innerHTML = '';
 
