@@ -96,7 +96,7 @@ export default class BubbleChart extends Component {
             .attr("class", "node")
             .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
             .on("click", function (d) {
-                bubbleClickFunc(d.label, shouldUpdateMap);
+                // bubbleClickFunc(d.label, shouldUpdateMap);
                 clicked = d.label;
             });
 
@@ -109,10 +109,11 @@ export default class BubbleChart extends Component {
                 d3.select(this).attr("r", d.r * 1.04);
             })
             .on("click", function (d) {
+                bubbleClickFunc(d.label, shouldUpdateMap);
+
                 clicked = d.label;
                 if (!isSelected) {
                     d3.select(this).style("opacity", 1)
-
                     d3.selectAll(".node")
                         .filter(function (x) {
                             return x.label != clicked

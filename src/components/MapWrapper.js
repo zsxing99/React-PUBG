@@ -1,5 +1,5 @@
 import React from 'react';
-import {Map} from "./Map";
+import { Map } from "./Map";
 import { Slider, Row, Col, Switch } from 'antd';
 
 export class MapWrapper extends React.Component {
@@ -42,33 +42,37 @@ export class MapWrapper extends React.Component {
                 <div className="map-view">
                     <Map
                         data={this.props.kill}
-                        options={{enable_killer: this.state.enable_killer, enable_victim: this.state.enable_victim,
-                            opacity: this.state.opacity}}
+                        options={{
+                            enable_killer: this.state.enable_killer, enable_victim: this.state.enable_victim,
+                            opacity: this.state.opacity
+                        }}
                         interval={this.props.interval}
                         space={this.props.spatial_selection}
+                        shouldHighlight={this.props.shouldHighlight}
+                        weapon={this.props.weapon}
                     />
                 </div>
-            <div className="map-filter">
-                <Row>
-                    <Col span={5}>
-                        Aggregate level: &nbsp;
+                <div className="map-filter">
+                    <Row>
+                        <Col span={5}>
+                            Aggregate level: &nbsp;
                         <Slider
-                            step={10}
-                            defaultValue={20}
-                            tipFormatter={this.opacity_tooltip}
-                            onAfterChange={this.opacity_onChange}
-                        />
-                    </Col>
-                    <Col span={8}>
-                        Killer position: &nbsp;
+                                step={10}
+                                defaultValue={20}
+                                tipFormatter={this.opacity_tooltip}
+                                onAfterChange={this.opacity_onChange}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            Killer position: &nbsp;
                         <Switch defaultChecked checkedChildren="red" onChange={this.killer_onChange} />
-                    </Col>
-                    <Col>
-                        Victim position: &nbsp;
+                        </Col>
+                        <Col>
+                            Victim position: &nbsp;
                         <Switch defaultChecked checkedChildren="blue" onChange={this.victim_onChange} />
-                    </Col>
-                </Row>
-            </div>
+                        </Col>
+                    </Row>
+                </div>
             </div>
         )
     }

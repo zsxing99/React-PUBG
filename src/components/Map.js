@@ -69,6 +69,7 @@ export class Map extends React.Component {
                 .data(this.props.data)
                 .enter();
 
+
             pairs
                 .append("circle")
                 .attr("class", "ERANGEL-killers")
@@ -91,6 +92,11 @@ export class Map extends React.Component {
                 init: false
             })
         } else {
+            console.log("========================")
+            console.log("INSIDE MAP.JS")
+            console.log(this.props.shouldHighlight);
+            console.log(this.props.weapon)
+            console.log("========================")
             if (prevProps.options.enable_killer !== this.props.options.enable_killer ||
                 prevProps.options.opacity !== this.props.options.opacity) {
                 const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];

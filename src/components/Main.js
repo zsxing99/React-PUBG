@@ -18,6 +18,8 @@ export class Main extends React.Component {
         kill: undefined,
         filtered_kill: undefined,
         bubbleChartData: undefined,
+        shouldHighlightMap: false,
+        weaponSelected: "NONE",
     };
 
     readData() {
@@ -101,8 +103,16 @@ export class Main extends React.Component {
     };
 
     bubbleClick = (label, shouldUpdateMap) => {
-        if (shouldUpdateMap) {
-            console.log(`update map with ${label}.......`)
+        if (!shouldUpdateMap) {
+            this.setState({
+                shouldHighlightMap: true,
+                weaponSelected: label,
+            })
+        } else {
+            this.setState({
+                shouldHighlightMap: false,
+                weaponSelected: "NONE",
+            })
         }
 
     }
@@ -116,6 +126,8 @@ export class Main extends React.Component {
                         <div>
                             <MapWrapper kill={this.state.kill} interval={this.props.selectors.time_interval}
                                 spatial_selection={this.props.selectors.spatial_selection}
+                                shouldHighlight={this.state.shouldHighlightMap}
+                                weapon={this.state.weaponSelected}
                             />
                         </div>
                         <div>
