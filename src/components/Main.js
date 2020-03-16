@@ -5,6 +5,9 @@ import agg from '../assets/data/agg.csv'
 import kill from '../assets/data/kill.csv'
 import { MapWrapper } from "./MapWrapper";
 import BubbleChart from "./BubbleChart";
+import ScatterplotMatrix from "./ScatterplotMatrix";
+import { Button, Slider, Row, Col } from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -102,6 +105,17 @@ export class Main extends React.Component {
         this.binarySearchLast(data, value[1])]
     };
 
+    onChangeTimeInterval = (value) => {
+        this.setState({
+            time_interval: value
+        });
+
+        // const interval = this.find_interval(this.state.kill, [value[0] * 60, value[1] * 60]);
+        // this.setState({
+        //     filtered_kill: kill.slice(interval)
+        // })
+    };
+
     bubbleClick = (label, shouldUpdateMap) => {
         if (!shouldUpdateMap) {
             this.setState({
@@ -137,11 +151,16 @@ export class Main extends React.Component {
                                     offsetX: 0,
                                     offsetY: 0,
                                 }}
-                                width={600}
+                                width={700}
                                 height={700}
-                                padding={5} // optional value, number that set the padding between bubbles
+                                padding={5} // padding between bubbles
                                 bubbleClickFunc={this.bubbleClick}
                                 data={this.state.bubbleChartData}
+                            />
+                        </div>
+                        <div>
+                            <ScatterplotMatrix
+                                data={this.state.agg}
                             />
                         </div>
                     </div>
