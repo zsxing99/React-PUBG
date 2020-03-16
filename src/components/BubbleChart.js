@@ -22,7 +22,6 @@ export default class BubbleChart extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-
         if (this.props.data !== nextProps.data) {
             return true;
         }

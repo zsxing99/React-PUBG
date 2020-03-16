@@ -27,6 +27,7 @@ export class Main extends React.Component {
     };
 
     readData() {
+        console.log("+++++" + this.props.selectors.spatial_selection)
         d3.csv(agg).then((data) => {
             this.setState({
                 agg: data
@@ -37,12 +38,28 @@ export class Main extends React.Component {
                 filtered_kill: data,
                 kill: data
             })
-            this.setBubbleChartData(data, 'killed_by', [0, 40]);
+            this.setBubbleChartData(data, 'killed_by', [0, 40],
+                [[0, 0], [800000, 800000]]);
         });
     };
 
-    setBubbleChartData(data, groupByKey, time_interval) {
-        console.log("INDISE SETBUBBLECHARTDATA(): " + time_interval)
+    // filter: weapons victims are killed by during the selected time interval and spatial range when he dies
+    setBubbleChartData(data, groupByKey, time_interval, spatial_selection) {
+        console.log("INDISE SETBUBBLECHARTDATA(): " + spatial_selection)
+        //[[0, 0], [800000.0, 800000.0]]
+        // console.log(spatial_selection[0])
+        // console.log(spatial_selection[1])
+        // console.log(spatial_selection[2])
+        // console.log(spatial_selection[0])
+
+        // console.log(spatial_selection[1][0])
+        // console.log(spatial_selection[0][1])
+        // console.log(spatial_selection[1][1])
+
+
+
+        // console.log("INDISE SETBUBBLECHARTDATA(): " + space)
+        console.log("typeIs : " + typeof (spatial_selection))
         var temp = [];
         var buffer = [];
         var result = [];
@@ -51,9 +68,15 @@ export class Main extends React.Component {
         console.log("Interval 1 is " + time_interval[1] * 60)
         console.log(data[0].time)
         data.forEach(element => {
-            if (time_interval) {
+            if (time_interval || spatial_selection) {
                 if (element.hasOwnProperty(groupByKey)
-                    && (element.time >= interval[0] && element.time <= interval[1])
+                    && (element.time >= interval[0] && element.time <= interval[1]
+                        //x0 y0, x1 y1 --> 50 100, 200 300
+                        //victim_position_x,victim_position_y
+                        && (element.victim_position_x >= spatial_selection[0][0] && element.victim_position_x <= spatial_selection[1][0]
+                            && (element.victim_position_y >= spatial_selection[0][1] && element.victim_position_y <= spatial_selection[1][1])
+                        )
+                    )
                 ) {
 
                     temp.push(element[groupByKey]);
@@ -85,8 +108,10 @@ export class Main extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.selectors.time_interval !== this.props.selectors.time_interval) {
-            this.setBubbleChartData(this.state.kill, 'killed_by', this.props.selectors.time_interval);
+        if (prevProps.selectors.time_interval !== this.props.selectors.time_interval
+            || prevProps.selectors.spatial_selection !== this.props.selectors.spatial_selection) {
+            this.setBubbleChartData(this.state.kill, 'killed_by',
+                this.props.selectors.time_interval, this.props.selectors.spatial_selection);
         }
     }
 
@@ -177,6 +202,7 @@ export class Main extends React.Component {
                                 bubbleClickFunc={this.bubbleClick}
                                 data={this.state.bubbleChartData}
                                 interval={this.props.selectors.time_interval}
+                                space={this.props.selectors.spatial_selection}
                             />
                         </div>
                         <div>
