@@ -6,8 +6,6 @@ import kill from '../assets/data/kill.csv'
 import { MapWrapper } from "./MapWrapper";
 import BubbleChart from "./BubbleChart";
 import ScatterplotMatrix from "./ScatterplotMatrix";
-import { Button, Slider, Row, Col } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -36,7 +34,7 @@ export class Main extends React.Component {
             this.setState({
                 filtered_kill: data,
                 kill: data
-            })
+            });
             this.setBubbleChartData(data, 'killed_by', [0, 40],
                 [[0, 0], [800000, 800000]]);
         });
@@ -187,6 +185,7 @@ export class Main extends React.Component {
                                 data={this.state.bubbleChartData}
                                 interval={this.props.selectors.time_interval}
                                 space={this.props.selectors.spatial_selection}
+                                select={this.state.weaponSelected}
                             />
                         </div>
                         <div>

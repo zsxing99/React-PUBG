@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="303e95fc-324d-454d-93c0-6f657f52d3c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BubbleChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BubbleChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -244,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584078573251</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="-circular update with bubble chart">
+      <created>1584408043347</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1584408043347</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,44 +286,27 @@
     <MESSAGE value="-map with tool box&#10;-animation enabled" />
     <MESSAGE value="-major update on layout and toolbox" />
     <MESSAGE value="-major update toolbox with spatial selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="-major update toolbox with spatial selection" />
+    <MESSAGE value="-circular update with bubble chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="-circular update with bubble chart" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1402" height="278" key="GridCell.Tab.0.bottom" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.0.bottom/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state width="1402" height="278" key="GridCell.Tab.0.center" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.0.center/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state width="1402" height="278" key="GridCell.Tab.0.left" timestamp="1583907015964">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.0.left/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015964" />
-    <state width="1402" height="278" key="GridCell.Tab.0.right" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.0.right/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state width="1402" height="278" key="GridCell.Tab.1.bottom" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.1.bottom/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state width="1402" height="278" key="GridCell.Tab.1.center" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.1.center/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state width="1402" height="278" key="GridCell.Tab.1.left" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.1.left/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state width="1402" height="278" key="GridCell.Tab.1.right" timestamp="1583907015965">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state width="1402" height="278" key="GridCell.Tab.1.right/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583907015965" />
-    <state x="233" y="77" key="SettingsEditor" timestamp="1583899047281">
-      <screen x="0" y="0" width="1445" height="864" />
-    </state>
-    <state x="233" y="77" key="SettingsEditor/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" timestamp="1583899047281" />
+    <state width="1402" height="278" key="GridCell.Tab.0.bottom" />
+    <state width="1402" height="278" key="GridCell.Tab.0.bottom/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.0.center" />
+    <state width="1402" height="278" key="GridCell.Tab.0.center/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.0.left" />
+    <state width="1402" height="278" key="GridCell.Tab.0.left/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.0.right" />
+    <state width="1402" height="278" key="GridCell.Tab.0.right/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.1.bottom" />
+    <state width="1402" height="278" key="GridCell.Tab.1.bottom/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.1.center" />
+    <state width="1402" height="278" key="GridCell.Tab.1.center/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.1.left" />
+    <state width="1402" height="278" key="GridCell.Tab.1.left/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state width="1402" height="278" key="GridCell.Tab.1.right" />
+    <state width="1402" height="278" key="GridCell.Tab.1.right/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
+    <state x="233" y="77" key="SettingsEditor" />
+    <state x="233" y="77" key="SettingsEditor/0.0.1445.864/3840.0.1924.1152@0.0.1445.864" />
   </component>
 </project>
