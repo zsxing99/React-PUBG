@@ -135,7 +135,6 @@ const ScatterplotMatrix = props => {
     };
 
     useEffect(() => {
-        console.log("UPDAT GRAPHHHH!!!")
         if (isLoading) {
             processData(data)
             setIsLoading(false);
