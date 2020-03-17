@@ -92,16 +92,43 @@ export class Map extends React.Component {
                 init: false
             })
         } else {
+            const weapon = this.props.weapon;
             if (this.props.shouldHighlight) {
-                // TODO: Add code to highlight dots on map that are killed by selected weapon
-                console.log("DRAW HIGHTLIGHT!!!!!!!!!")
-                console.log(`this.props.shouldHighlight = ${this.props.shouldHighlight}`)
-                console.log(`weapon to hightlight = ${this.props.weapon}`)
+                const killers = d3.selectAll(".ERANGEL-killers");
+                const victims = d3.selectAll(".ERANGEL-victims");
+                const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
+                if (this.props.weapon === "NONE") {
+                    killers.attr("opacity", this.props.options.opacity);
+                    victims.attr("opacity", this.props.options.opacity);
+                } else {
+                    if (this.props.options.enable_victim) {
+                        d3.selectAll(".ERANGEL-victims")
+                            .filter(function (d) {
+                                return d.time <= interval[1] && d.time > interval[0] && (["NONE", d.killed_by].includes(weapon));
+                            })
+                            .attr("opacity", this.props.options.opacity);
 
-                // filter input data to only have rows containing this.props.weapon
+                        d3.selectAll(".ERANGEL-victims")
+                            .filter(function (d) {
+                                return d.time > interval[1] || d.time <= interval[0] || (!["NONE", d.killed_by].includes(weapon));
+                            })
+                            .attr("opacity", 0);
+                    }
 
-                // draw on map based on the filtered data
+                    if (this.props.options.enable_killer) {
+                        d3.selectAll(".ERANGEL-killers")
+                            .filter(function (d) {
+                                return d.time <= interval[1] && d.time > interval[0] && (["NONE", d.killed_by].includes(weapon));
+                            })
+                            .attr("opacity", this.props.options.opacity);
 
+                        d3.selectAll(".ERANGEL-killers")
+                            .filter(function (d) {
+                                return d.time > interval[1] || d.time <= interval[0] || (!["NONE", d.killed_by].includes(weapon));
+                            })
+                            .attr("opacity", 0);
+                    }
+                }
             }
             if (prevProps.options.enable_killer !== this.props.options.enable_killer ||
                 prevProps.options.opacity !== this.props.options.opacity) {
@@ -110,7 +137,7 @@ export class Map extends React.Component {
                 if (this.props.options.enable_killer) {
                     killers
                         .filter(function (d) {
-                            return d.time <= interval[1] && d.time > interval[0];
+                            return d.time <= interval[1] && d.time > interval[0] && (["NONE", d.killed_by].includes(weapon));
                         })
                         .attr("opacity", this.props.options.opacity);
                 } else {
@@ -125,7 +152,7 @@ export class Map extends React.Component {
                 if (this.props.options.enable_victim) {
                     victims
                         .filter(function (d) {
-                            return d.time <= interval[1] && d.time > interval[0];
+                            return d.time <= interval[1] && d.time > interval[0] && (["NONE", d.killed_by].includes(weapon));
                         })
                         .attr("opacity", this.props.options.opacity);
                 } else {
@@ -139,13 +166,13 @@ export class Map extends React.Component {
                 if (this.props.options.enable_victim) {
                     d3.selectAll(".ERANGEL-victims")
                         .filter(function (d) {
-                            return d.time <= interval[1] && d.time > interval[0];
+                            return d.time <= interval[1] && d.time > interval[0] && (["NONE", d.killed_by].includes(weapon));
                         })
                         .attr("opacity", this.props.options.opacity);
 
                     d3.selectAll(".ERANGEL-victims")
                         .filter(function (d) {
-                            return d.time > interval[1] || d.time <= interval[0];
+                            return d.time > interval[1] || d.time <= interval[0] || (!["NONE", d.killed_by].includes(weapon));
                         })
                         .attr("opacity", 0);
                 }
@@ -153,13 +180,13 @@ export class Map extends React.Component {
                 if (this.props.options.enable_killer) {
                     d3.selectAll(".ERANGEL-killers")
                         .filter(function (d) {
-                            return d.time <= interval[1] && d.time > interval[0];
+                            return d.time <= interval[1] && d.time > interval[0] && (["NONE", d.killed_by].includes(weapon));
                         })
                         .attr("opacity", this.props.options.opacity);
 
                     d3.selectAll(".ERANGEL-killers")
                         .filter(function (d) {
-                            return d.time > interval[1] || d.time <= interval[0];
+                            return d.time > interval[1] || d.time <= interval[0] || (!["NONE", d.killed_by].includes(weapon));
                         })
                         .attr("opacity", 0);
                 }

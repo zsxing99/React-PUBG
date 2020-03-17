@@ -27,7 +27,6 @@ export class Main extends React.Component {
     };
 
     readData() {
-        console.log("+++++" + this.props.selectors.spatial_selection)
         d3.csv(agg).then((data) => {
             this.setState({
                 agg: data
@@ -45,21 +44,6 @@ export class Main extends React.Component {
 
     // filter: weapons victims are killed by during the selected time interval and spatial range when he dies
     setBubbleChartData(data, groupByKey, time_interval, spatial_selection) {
-        console.log("INDISE SETBUBBLECHARTDATA(): " + spatial_selection)
-        //[[0, 0], [800000.0, 800000.0]]
-        // console.log(spatial_selection[0])
-        // console.log(spatial_selection[1])
-        // console.log(spatial_selection[2])
-        // console.log(spatial_selection[0])
-
-        // console.log(spatial_selection[1][0])
-        // console.log(spatial_selection[0][1])
-        // console.log(spatial_selection[1][1])
-
-
-
-        // console.log("INDISE SETBUBBLECHARTDATA(): " + space)
-        console.log("typeIs : " + typeof (spatial_selection))
         var temp = [];
         var buffer = [];
         var result = [];
@@ -88,7 +72,7 @@ export class Main extends React.Component {
         temp.forEach(element => {
             if (buffer.includes(element)) {
                 result.forEach(e => {
-                    if (e.label == element) {
+                    if (e.label === element) {
                         e.value += 1;
                     }
                 })
@@ -169,12 +153,12 @@ export class Main extends React.Component {
             })
         } else {
             this.setState({
-                shouldHighlightMap: false,
+                shouldHighlightMap: true,
                 weaponSelected: "NONE",
             })
         }
 
-    }
+    };
 
     render() {
         return this.state.agg === undefined ? (
@@ -206,9 +190,9 @@ export class Main extends React.Component {
                             />
                         </div>
                         <div>
-                            <ScatterplotMatrix
-                                data={this.state.agg}
-                            />
+                            {/*<ScatterplotMatrix*/}
+                            {/*    data={this.state.agg}*/}
+                            {/*/>*/}
                         </div>
                     </div>
                 </div>

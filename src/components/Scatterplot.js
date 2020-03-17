@@ -1,3 +1,7 @@
+/* ScatterPlot-with-trendline.jsx
+Requires: react and d3 (ie  `npm install -S react d3`)
+See the LinearGraph for an example of calling ScatterPlot
+*/
 import React from "react";
 import { scaleLinear, max, axisLeft, axisBottom, select } from "d3";
 import * as d3 from 'd3';
@@ -48,20 +52,11 @@ class ScatterPlot extends React.Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-
-        if (this.props.data !== nextProps.data) {
-            return true;
-        }
-        return false;
-    }
-
-
 
     render() {
         const margin = { top: 20, right: 15, bottom: 60, left: 60 }
-        const width = 250 - margin.left - margin.right
-        const height = 250 - margin.top - margin.bottom
+        const width = 300 - margin.left - margin.right
+        const height = 300 - margin.top - margin.bottom
         const data = this.props.data
 
         const x = scaleLinear()
@@ -155,6 +150,7 @@ class Axis extends React.Component {
     componentDidMount() {
         const node = this.refs[this.props.axis]
         select(node).call(this.props.scale)
+        console.log(node)
     }
 
     render() {
