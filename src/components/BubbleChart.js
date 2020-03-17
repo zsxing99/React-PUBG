@@ -21,16 +21,15 @@ export default class BubbleChart extends Component {
         this.drawChart();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.data !== nextProps.data) {
-            return true;
-        }
-        return false;
-
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.props.data !== nextProps.data) {
+    //         return true;
+    //     }
+    //     return false;
+    //
+    // }
 
     componentDidUpdate() {
-        console.log("Bubblechart is updated")
         const {
             width,
             height,
@@ -97,6 +96,8 @@ export default class BubbleChart extends Component {
             labelFont,
         } = this.props;
 
+        const weapon = this.props.select;
+
         const bubbleChart = d3.select(this.svg).append("g")
             .attr("class", "bubble-chart")
             .attr("transform", function (d) { return "translate(" + (width * graph.offsetX) + "," + (width * graph.offsetY) + ")"; });
@@ -111,7 +112,7 @@ export default class BubbleChart extends Component {
                 clicked = d.label;
             });
 
-        node.append("circle")
+        const bubbles = node.append("circle")
             .attr("id", function (d) { return d.id; })
             .attr("r", function (d) { return d.r - (d.r * .04); })
             .style("fill", function (d) { return d.data.color ? d.data.color : color(nodes.indexOf(d)); })
@@ -148,6 +149,14 @@ export default class BubbleChart extends Component {
                 const r = d.r - (d.r * 0.04);
                 d3.select(this).transition().attr("r", r);
             });
+
+        if (weapon !== "NONE") {
+            d3.selectAll(".node")
+                .filter(function (x) {
+                    return x.label !== weapon
+                })
+                .style("opacity", 0.3);
+        }
 
         node.append("clipPath")
             .attr("id", function (d) { return "clip-" + d.id; })

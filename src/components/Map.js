@@ -94,13 +94,7 @@ export class Map extends React.Component {
         } else {
             const weapon = this.props.weapon;
             if (this.props.shouldHighlight) {
-                const killers = d3.selectAll(".ERANGEL-killers");
-                const victims = d3.selectAll(".ERANGEL-victims");
                 const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
-                if (this.props.weapon === "NONE") {
-                    killers.attr("opacity", this.props.options.opacity);
-                    victims.attr("opacity", this.props.options.opacity);
-                } else {
                     if (this.props.options.enable_victim) {
                         d3.selectAll(".ERANGEL-victims")
                             .filter(function (d) {
@@ -128,7 +122,6 @@ export class Map extends React.Component {
                             })
                             .attr("opacity", 0);
                     }
-                }
             }
             if (prevProps.options.enable_killer !== this.props.options.enable_killer ||
                 prevProps.options.opacity !== this.props.options.opacity) {
@@ -161,6 +154,7 @@ export class Map extends React.Component {
             }
 
             if (prevProps.interval !== this.props.interval) {
+                console.log(this.props.interval);
                 const interval = [this.props.interval[0] * 60, this.props.interval[1] * 60];
 
                 if (this.props.options.enable_victim) {
