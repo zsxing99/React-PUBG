@@ -8,7 +8,7 @@ var prevClicked = "";
 var clicked = "empty";
 var isSelected = false;
 
-var shouldUpdateMap = false;
+var shouldUpdateMap = true;
 export default class BubbleChart extends Component {
     constructor(props) {
         super(props);
@@ -99,7 +99,7 @@ export default class BubbleChart extends Component {
 
         const bubbleChart = d3.select(this.svg).append("g")
             .attr("class", "bubble-chart")
-            .attr("transform", function (d) { return "translate(" + (width * graph.offsetX) + "," + (width * graph.offsetY) + ")"; });;
+            .attr("transform", function (d) { return "translate(" + (width * graph.offsetX) + "," + (width * graph.offsetY) + ")"; });
 
         const node = bubbleChart.selectAll(".node")
             .data(nodes)
@@ -117,17 +117,18 @@ export default class BubbleChart extends Component {
             .style("fill", function (d) { return d.data.color ? d.data.color : color(nodes.indexOf(d)); })
             .style("z-index", 1)
             .on('mouseover', function (d) {
-                d3.select(this).attr("r", d.r * 1.04);
+                d3.select(this).transition().attr("r", d.r * 1.04);
             })
             .on("click", function (d) {
                 bubbleClickFunc(d.label, shouldUpdateMap);
 
                 clicked = d.label;
                 if (!isSelected) {
-                    d3.select(this).style("opacity", 1)
+                    d3.select(this).transition().style("opacity", 1);
                     d3.selectAll(".node")
+                        .transition()
                         .filter(function (x) {
-                            return x.label != clicked
+                            return x.label !== clicked
                         })
                         .style("opacity", 0.3);
                     prevClicked = clicked;
@@ -135,7 +136,7 @@ export default class BubbleChart extends Component {
                     shouldUpdateMap = true;
                 } else {
 
-                    d3.selectAll(".node")
+                    d3.selectAll(".node").transition()
                         .style("opacity", 1);
                     isSelected = false;
                     prevClicked = clicked;
@@ -145,7 +146,7 @@ export default class BubbleChart extends Component {
             })
             .on('mouseout', function (d) {
                 const r = d.r - (d.r * 0.04);
-                d3.select(this).attr("r", r);
+                d3.select(this).transition().attr("r", r);
             });
 
         node.append("clipPath")

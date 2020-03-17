@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ScatterPlot from './ScatterPlot';
+import Scatterplot from './Scatterplot';
 import { Select } from 'antd';
 import * as d3 from 'd3';
 const { Option } = Select;
@@ -157,53 +157,53 @@ const ScatterplotMatrix = props => {
                         />
                     </div>
                     <div style={styles.row}>
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data1
                             }
                             title={firstSelectedCategory}
                         />
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data2
                             }
                         />
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data3
                             }
                         />
                     </div>
                     <div style={styles.row}>
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data4
                             }
                         />
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data5
                             }
                             title={secondSelectedCategory}
                         />
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data6
                             }
                         />
                     </div>
                     <div style={styles.row}>
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data7
                             }
                         />
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data8
                             }
                         />
-                        <ScatterPlot
+                        <Scatterplot
                             data={
                                 data9
                             }

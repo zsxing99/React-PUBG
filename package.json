@@ -9,7 +9,6 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.0.1",
     "d3": "^5.15.0",
-    "@ant-design/icons": "latest",
     "d3-queue": "3.0.7",
     "d3-brush": "^1.1.5",
     "react": "^16.13.0",
@@ -38,5 +37,8 @@
       "last 1 chrome version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.3.0"
   }
 }

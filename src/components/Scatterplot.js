@@ -7,7 +7,7 @@ function sortNumber(a, b) {
     return a - b
 }
 
-class ScatterPlot extends React.Component {
+class Scatterplot extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -204,4 +204,4 @@ function linearRegression(y, x) {
     }
 }
 
-export default ScatterPlot;
+export default Scatterplot;
