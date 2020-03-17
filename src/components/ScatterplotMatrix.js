@@ -1,14 +1,57 @@
 import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ScatterPlot from './ScatterPlot';
+import { Select } from 'antd';
 import * as d3 from 'd3';
-// import legend   from 'd3-svg-legend/no-extend';
+const { Option } = Select;
 
+
+const SelectionMenu = props => {
+    // default: dist_walk , player dmg, survival time, 4, 5, 7
+
+    const [allOptions, setAllOptions] = useState([
+        "player_dist_ride",
+        "player_dist_walk", "player_dmg", "player_kills",
+        "player_survive_time", "team_placement"
+    ]);
+
+    //game_size party_size player_assists player_dist_ride,
+    //player_dist_walk,player_dmg,player_kills,player_survive_time,team_placement
+    return (
+        <div styles={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-even' }}>
+            <Select defaultValue={allOptions[1]} style={{ width: 200 }} onChange={props.handleChange1}>
+                <Option value={allOptions[0]}>Player Distance Ride</Option>
+                <Option value={allOptions[1]}>Player Distance Walk</Option>
+                <Option value={allOptions[2]}>Player Damage</Option>
+                <Option value={allOptions[3]}>Player Survive Time</Option>
+                <Option value={allOptions[4]}>Team Placement</Option>
+            </Select>
+            <Select defaultValue={allOptions[2]} style={{ width: 200 }} onChange={props.handleChange2}>
+                <Option value={allOptions[0]}>Player Distance Ride</Option>
+                <Option value={allOptions[1]}>Player Distance Walk</Option>
+                <Option value={allOptions[2]}>Player Damage</Option>
+                <Option value={allOptions[3]}>Player Survive Time</Option>
+                <Option value={allOptions[4]}>Team Placement</Option>
+            </Select>
+            <Select defaultValue={allOptions[3]} style={{ width: 200 }} onChange={props.handleChange3}>
+                <Option value={allOptions[0]}>Player Distance Ride</Option>
+                <Option value={allOptions[1]}>Player Distance Walk</Option>
+                <Option value={allOptions[2]}>Player Damage</Option>
+                <Option value={allOptions[3]}>Player Survive Time</Option>
+                <Option value={allOptions[4]}>Team Placement</Option>
+            </Select>
+        </div>
+    )
+
+}
 
 const ScatterplotMatrix = props => {
     const {
         data
     } = props;
+    const [firstSelectedCategory, setFirstSelectedCategory] = useState("player_dist_walk");
+    const [secondSelectedCategory, setSecondSelectedCategory] = useState("player_dmg");
+    const [thirdSelectedCategory, setThirdSelectedCategory] = useState("player_survive_time");
     const [isLoading, setIsLoading] = useState(true)
     const [data1, setData1] = useState([]);
     const [data2, setData2] = useState([]);
@@ -19,45 +62,56 @@ const ScatterplotMatrix = props => {
     const [data7, setData7] = useState([]);
     const [data8, setData8] = useState([]);
     const [data9, setData9] = useState([]);
+
+    const handleChange1 = (selectedItem) => {
+        setFirstSelectedCategory(selectedItem)
+    };
+    const handleChange2 = (selectedItem) => {
+        setSecondSelectedCategory(selectedItem)
+    };
+    const handleChange3 = (selectedItem) => {
+        setThirdSelectedCategory(selectedItem)
+    };
+
     //player_dist_walk,player_dmg, player_survive_time
     const processData = (data) => {
         var temp1 = [], temp2 = [], temp3 = [], temp4 = [], temp5 = [], temp6 = [], temp7 = [], temp8 = [], temp9 = [];
         for (var i = 0; i < data.length; i++) {
             var arr1 = [
-                data[i].player_dist_walk,
-                data[i].player_dist_walk,
+                data[i][firstSelectedCategory],
+                data[i][firstSelectedCategory],
             ]
             var arr2 = [
-                data[i].player_dist_walk,
-                data[i].player_dmg,
+                data[i][firstSelectedCategory],
+                data[i][secondSelectedCategory],
             ]
             var arr3 = [
-                data[i].player_dist_walk,
-                data[i].player_survive_time,
+                data[i][firstSelectedCategory],
+                data[i][thirdSelectedCategory],
             ]
             var arr4 = [
-                data[i].player_dmg,
-                data[i].player_dist_walk,
+                data[i][secondSelectedCategory],
+                data[i][firstSelectedCategory],
             ]
             var arr5 = [
-                data[i].player_dmg,
-                data[i].player_dmg,
+                data[i][secondSelectedCategory],
+                data[i][secondSelectedCategory],
             ]
             var arr6 = [
-                data[i].player_dmg,
-                data[i].player_survive_time,
+                data[i][secondSelectedCategory],
+                data[i][thirdSelectedCategory],
             ]
             var arr7 = [
-                data[i].player_survive_time,
-                data[i].player_dist_walk,
+                data[i][thirdSelectedCategory],
+                data[i][firstSelectedCategory],
             ]
             var arr8 = [
-                data[i].player_survive_time,
-                data[i].player_dmg,
+                data[i][thirdSelectedCategory],
+                data[i][secondSelectedCategory],
             ]
             var arr9 = [
-                data[i].player_survive_time,
-                data[i].player_survive_time,
+                data[i][thirdSelectedCategory],
+                data[i][thirdSelectedCategory],
             ]
             temp1.push(arr1);
             temp2.push(arr2);
@@ -81,22 +135,34 @@ const ScatterplotMatrix = props => {
     };
 
     useEffect(() => {
+        console.log("UPDAT GRAPHHHH!!!")
         if (isLoading) {
             processData(data)
             setIsLoading(false);
         }
-    });
+    }, []);
+
+    useEffect(() => {
+        processData(data)
+    }, [firstSelectedCategory, secondSelectedCategory, thirdSelectedCategory])
 
     return (
         isLoading ? "LOADING"
             : (
                 <div>
+                    <div>
+                        <SelectionMenu
+                            handleChange1={handleChange1}
+                            handleChange2={handleChange2}
+                            handleChange3={handleChange3}
+                        />
+                    </div>
                     <div style={styles.row}>
                         <ScatterPlot
                             data={
                                 data1
                             }
-                            title={"Distance Traveled"}
+                            title={firstSelectedCategory}
                         />
                         <ScatterPlot
                             data={
@@ -119,7 +185,7 @@ const ScatterplotMatrix = props => {
                             data={
                                 data5
                             }
-                            title={"Player Damage"}
+                            title={secondSelectedCategory}
                         />
                         <ScatterPlot
                             data={
@@ -142,7 +208,7 @@ const ScatterplotMatrix = props => {
                             data={
                                 data9
                             }
-                            title={"Survival Time"}
+                            title={thirdSelectedCategory}
                         />
                     </div>
                 </div>

@@ -45,12 +45,19 @@ class ScatterPlot extends React.Component {
         if (!this.state.isMaxSet) {
             this.findMinMax();
         }
+    }
 
+    componentDidUpdate() {
+        this.findMinMax();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
 
         if (this.props.data !== nextProps.data) {
+            return true;
+        }
+        if (this.state.xMax !== nextState.xMax
+            || this.state.yMax !== nextState.yMax) {
             return true;
         }
         return false;
