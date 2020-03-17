@@ -171,7 +171,7 @@ export class Main extends React.Component {
                                 weapon={this.state.weaponSelected}
                             />
                         </div>
-                        <div>
+                        <div className="bub">
                             <BubbleChart
                                 graph={{
                                     zoom: 1,
@@ -188,7 +188,7 @@ export class Main extends React.Component {
                                 select={this.state.weaponSelected}
                             />
                         </div>
-                        <div>
+                        <div className="sca">
                             <ScatterplotMatrix
                                 data={this.state.agg}
                             />

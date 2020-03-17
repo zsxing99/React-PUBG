@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Scatterplot from './Scatterplot';
+import ScatterPlot from './ScatterPlot';
 import { Select } from 'antd';
 import * as d3 from 'd3';
 const { Option } = Select;
@@ -12,7 +12,7 @@ const SelectionMenu = props => {
     const [allOptions, setAllOptions] = useState([
         "player_dist_ride",
         "player_dist_walk", "player_dmg", "player_kills",
-        "player_survive_time", "team_placement"
+        "player_survive_time", "team_placement", "player_assists"
     ]);
 
     //game_size party_size player_assists player_dist_ride,
@@ -23,22 +23,28 @@ const SelectionMenu = props => {
                 <Option value={allOptions[0]}>Player Distance Ride</Option>
                 <Option value={allOptions[1]}>Player Distance Walk</Option>
                 <Option value={allOptions[2]}>Player Damage</Option>
-                <Option value={allOptions[3]}>Player Survive Time</Option>
-                <Option value={allOptions[4]}>Team Placement</Option>
+                <Option value={allOptions[3]}>Player Kills</Option>
+                <Option value={allOptions[4]}>Player Survive Time</Option>
+                <Option value={allOptions[5]}>Team Placement</Option>
+                <Option value={allOptions[6]}>Player Assists</Option>
             </Select>
             <Select defaultValue={allOptions[2]} style={{ width: 200 }} onChange={props.handleChange2}>
                 <Option value={allOptions[0]}>Player Distance Ride</Option>
                 <Option value={allOptions[1]}>Player Distance Walk</Option>
                 <Option value={allOptions[2]}>Player Damage</Option>
-                <Option value={allOptions[3]}>Player Survive Time</Option>
-                <Option value={allOptions[4]}>Team Placement</Option>
+                <Option value={allOptions[3]}>Player Kills</Option>
+                <Option value={allOptions[4]}>Player Survive Time</Option>
+                <Option value={allOptions[5]}>Team Placement</Option>
+                <Option value={allOptions[6]}>Player Assists</Option>
             </Select>
             <Select defaultValue={allOptions[3]} style={{ width: 200 }} onChange={props.handleChange3}>
                 <Option value={allOptions[0]}>Player Distance Ride</Option>
                 <Option value={allOptions[1]}>Player Distance Walk</Option>
                 <Option value={allOptions[2]}>Player Damage</Option>
-                <Option value={allOptions[3]}>Player Survive Time</Option>
-                <Option value={allOptions[4]}>Team Placement</Option>
+                <Option value={allOptions[3]}>Player Kills</Option>
+                <Option value={allOptions[4]}>Player Survive Time</Option>
+                <Option value={allOptions[5]}>Team Placement</Option>
+                <Option value={allOptions[6]}>Player Assists</Option>
             </Select>
         </div>
     )
@@ -157,53 +163,53 @@ const ScatterplotMatrix = props => {
                         />
                     </div>
                     <div style={styles.row}>
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data1
                             }
                             title={firstSelectedCategory}
                         />
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data2
                             }
                         />
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data3
                             }
                         />
                     </div>
                     <div style={styles.row}>
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data4
                             }
                         />
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data5
                             }
                             title={secondSelectedCategory}
                         />
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data6
                             }
                         />
                     </div>
                     <div style={styles.row}>
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data7
                             }
                         />
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data8
                             }
                         />
-                        <Scatterplot
+                        <ScatterPlot
                             data={
                                 data9
                             }

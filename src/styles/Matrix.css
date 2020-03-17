@@ -1,3 +1,4 @@
-/* g .tick{
+.Axis-bottom text {
     transform: rotate(-45deg);
-} */
+    text-anchor: end;
+}

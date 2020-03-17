@@ -1,15 +1,7 @@
-/* ScatterPlot-with-trendline.jsx
-Requires: react and d3 (ie  `npm install -S react d3`)
-See the LinearGraph for an example of calling ScatterPlot
-*/
 import React from "react";
 import { scaleLinear, max, axisLeft, axisBottom, select } from "d3";
 import * as d3 from 'd3';
 import '../styles/Matrix.css';
-
-function sortNumber(a, b) {
-    return a - b
-}
 
 class ScatterPlot extends React.Component {
     constructor(props) {
@@ -22,51 +14,59 @@ class ScatterPlot extends React.Component {
     };
 
     findMinMax() {
+        const margin = { top: 20, right: 15, bottom: 60, left: 60 }
+        const width = 250 - margin.left - margin.right
+        const height = 250 - margin.top - margin.bottom
         var data = this.props.data;
         var x = [], y = [];
         for (var i = 0; i < data.length; i++) {
-            x.push(parseInt(data[i][0]))
-            y.push(parseInt(data[i][1]))
+            x.push((data[i][0]))
+            y.push((data[i][1]))
         }
-        var _xMax = d3.max(x);
-        var _yMax = d3.max(y);
+        var xMax = d3.max(x);
+        var yMax = d3.max(y);
 
         // Rescale outliers
-        if (_xMax > 10000) {
-            _xMax = 6000;
+        if (xMax > 10000) {
+            xMax = 10000;
         }
-        if (_yMax > 10000) {
-            _yMax = 10000;
+        if (yMax > 10000) {
+            yMax = 10000;
         }
 
+        const x_axis = scaleLinear()
+            .domain([0, xMax])
+            .range([0, width]);
+
+
+        const y_axis = scaleLinear()
+            .domain([0, yMax])
+            .range([height, 0])
+
         this.setState({
-            xMax: _xMax,
-            yMax: _yMax,
+            xMax: x_axis,
+            yMax: y_axis,
             isMaxSet: true
         })
     }
+
     componentWillMount() {
         if (!this.state.isMaxSet) {
             this.findMinMax();
         }
-
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.data !== this.props.data) {
+            this.findMinMax();
+        }
+    }
 
     render() {
         const margin = { top: 20, right: 15, bottom: 60, left: 60 }
-        const width = 300 - margin.left - margin.right
-        const height = 300 - margin.top - margin.bottom
+        const width = 250 - margin.left - margin.right
+        const height = 250 - margin.top - margin.bottom
         const data = this.props.data
-
-        const x = scaleLinear()
-            .domain([0, this.state.xMax])
-            .range([0, width]);
-
-
-        const y = scaleLinear()
-            .domain([0, this.state.yMax])
-            .range([height, 0])
 
 
         return (
@@ -83,16 +83,16 @@ class ScatterPlot extends React.Component {
                         height={height}
                         className="main"
                     >
-                        <RenderCircles data={data} scale={{ x, y }} />
+                        <RenderCircles data={data} scale={{ x :this.state.xMax, y: this.state.yMax }} />
                         <Axis
-                            axis="x"
+                            a="x"
                             transform={"translate(0," + height + ")"}
-                            scale={axisBottom().scale(x)}
+                            scale={axisBottom().scale(this.state.xMax).ticks(8)}
                         />
                         <Axis
-                            axis="y"
+                            a="y"
                             transform="translate(0,0)"
-                            scale={axisLeft().scale(y)}
+                            scale={axisLeft().scale(this.state.yMax).ticks(8)}
                         />
                     </g>
                 </svg>
@@ -116,81 +116,21 @@ class RenderCircles extends React.Component {
     }
 }
 
-class TrendLine extends React.Component {
-    render() {
-        let x_coords = this.props.data.map(n => {
-            return n[0]
-        })
-        let y_coords = this.props.data.map(n => {
-            return n[1]
-        })
-        const trendline = linearRegression(y_coords, x_coords)
-
-        // Lowest and highest x coordinates to draw a plot line
-        const lowest_x = x_coords.sort(sortNumber)[0]
-        const hightest_x = x_coords.sort(sortNumber)[x_coords.length - 1]
-        const trendline_points = [
-            [lowest_x, trendline(lowest_x)],
-            [hightest_x, trendline(hightest_x)]
-        ]
-
-        return (
-            <line
-                x1={this.props.scale.x(trendline_points[0][0])}
-                y1={this.props.scale.y(trendline_points[0][1])}
-                x2={this.props.scale.x(trendline_points[1][0])}
-                y2={this.props.scale.y(trendline_points[1][1])}
-                style={{ stroke: "black", strokeWidth: "2" }}
-            />
-        )
-    }
-}
-
 class Axis extends React.Component {
     componentDidMount() {
-        const node = this.refs[this.props.axis]
+        const node = this.refs[this.props.a]
         select(node).call(this.props.scale)
-        console.log(node)
     }
 
     render() {
         return (
-            <g
+            <g className={this.props.a === "x" ? "Axis-bottom" : "Axis"}
                 transform={this.props.transform}
-                ref={this.props.axis}
+                ref={this.props.a}
             />
         )
     }
 }
 
-function linearRegression(y, x) {
-    var lr = {}
-    var n = y.length
-    var sum_x = 0
-    var sum_y = 0
-    var sum_xy = 0
-    var sum_xx = 0
-    var sum_yy = 0
-
-    for (var i = 0; i < y.length; i++) {
-        sum_x += x[i]
-        sum_y += y[i]
-        sum_xy += x[i] * y[i]
-        sum_xx += x[i] * x[i]
-        sum_yy += y[i] * y[i]
-    }
-
-    lr["slope"] = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x)
-    lr["intercept"] = (sum_y - lr.slope * sum_x) / n
-    lr["r2"] = Math.pow(
-        (n * sum_xy - sum_x * sum_y) /
-        Math.sqrt((n * sum_xx - sum_x * sum_x) * (n * sum_yy - sum_y * sum_y)),
-        2
-    )
-
-    return x => {
-        return lr.slope * x + lr.intercept
-    }
-}
 
 export default ScatterPlot;
