@@ -37,6 +37,10 @@ class App extends React.Component {
         window.open("https://github.com/zsxing99/React-PUBG")
     };
 
+    onClickDescription = () => {
+        window.open("https://docs.google.com/document/d/11Ggceo2G_ZEgaDeXy7HuO790xf1-AVUly28v_Qs50j0/edit")
+    };
+
     onClickAnimate = () => {
         this.setState({
             inAnimation: true
@@ -158,7 +162,9 @@ class App extends React.Component {
                         >
                             GitHub
                         </Button>
-                        <Button type="primary" style={{ height: "55px", background: "black", borderColor: "grey" }}>
+                        <Button type="primary" style={{ height: "55px", background: "black", borderColor: "grey" }}
+                            onClick={this.onClickDescription}
+                        >
                             Description
                         </Button>
                         <Button type="primary" style={{ height: "55px", background: "black", borderColor: "grey" }}
