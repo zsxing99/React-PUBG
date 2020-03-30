@@ -1,3 +1,9 @@
+## Real Sample - Remote Access
+
+website: http://pubg-stats-vis.s3-website-us-west-1.amazonaws.com/
+
+## Local Access
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
