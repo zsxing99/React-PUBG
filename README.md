@@ -1,6 +1,7 @@
 ## Real Sample - Remote Access
 
-website: http://pubg-stats-vis.s3-website-us-west-1.amazonaws.com/
+website: ~~http://pubg-stats-vis.s3-website-us-west-1.amazonaws.com/~~
+The website is no longer accessible.
 
 ## Local Access
 
